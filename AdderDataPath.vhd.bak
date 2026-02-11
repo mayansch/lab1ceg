@@ -1,0 +1,126 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity adderDataPath is
+    port (
+        signA, signB          : in  std_logic;
+        mantissaA, mantissaB  : in  std_logic_vector(7 downto 0);
+        exponentA, exponentB  : in  std_logic_vector(6 downto 0);
+        gClock, gResetBar     : in  std_logic;
+
+        shftM                 : in  std_logic;
+        lddc, decdc           : in  std_logic;
+        ldam, ldbm            : in  std_logic;
+        ldsm, lshftm, rshftm  : in  std_logic;
+        ldse, incse, decse    : in  std_logic;
+        clrs, ldas            : in  std_logic;
+
+        dcemt, mantissaCarry, mantissaSumMSB : out std_logic;
+
+        signOut               : out std_logic;
+        mantissaOut           : out std_logic_vector(7 downto 0);
+        exponentOut           : out std_logic_vector(6 downto 0);
+        overflow              : out std_logic;
+
+        o_register_Am_result,
+        o_register_Bm_result,
+        o_mantissaAddResult   : out std_logic_vector(8 downto 0)
+    );
+end adderDataPath;
+
+architecture rtl of adderDataPath is
+
+    signal shftam, shftbm, aegtbe, aeltbe, dcemt_sig : std_logic;
+    signal signAorSignBNegative : std_logic;
+
+    signal exponentA_8Bit, exponentB_8Bit : std_logic_vector(7 downto 0);
+    signal exponentSubtractor_result       : std_logic_vector(7 downto 0);
+    signal exponentDifferenceNegator_result: std_logic_vector(7 downto 0);
+    signal downcounter_result              : std_logic_vector(7 downto 0);
+    signal larger_exponent                 : std_logic_vector(7 downto 0);
+    signal register_Se_result              : std_logic_vector(7 downto 0);
+
+    signal mantissaA_9Bit, mantissaB_9Bit : std_logic_vector(8 downto 0);
+    signal register_Am_result, register_Bm_result : std_logic_vector(8 downto 0);
+    signal register_Am_negator_result      : std_logic_vector(8 downto 0);
+    signal register_Bm_negator_result      : std_logic_vector(8 downto 0);
+    signal mantissa_adder_result           : std_logic_vector(8 downto 0);
+    signal complementer_Sm_result          : std_logic_vector(8 downto 0);
+    signal register_Sm_result              : std_logic_vector(8 downto 0);
+    signal mantissaAddCarry                : std_logic;
+
+    component EightBitAdderSubtractor is
+        port (
+            Ain, Bin : in  std_logic_vector(7 downto 0);
+            Op        : in  std_logic;
+            Result    : out std_logic_vector(7 downto 0);
+            Cout      : out std_logic
+        );
+    end component;
+
+    component NineBitAdderSubtractor is
+        port (
+            Ain, Bin : in  std_logic_vector(8 downto 0);
+            Op        : in  std_logic;
+            Result    : out std_logic_vector(8 downto 0);
+            Cout      : out std_logic
+        );
+    end component;
+
+begin
+
+    exponentSubtractor : EightBitAdderSubtractor
+        port map (
+            Ain    => exponentA_8Bit,
+            Bin    => exponentB_8Bit,
+            Op     => '1',
+            Result => exponentSubtractor_result,
+            Cout   => open
+        );
+
+    exponentDifferenceNegator : EightBitAdderSubtractor
+        port map (
+            Ain    => "00000000",
+            Bin    => exponentSubtractor_result,
+            Op     => aeltbe,
+            Result => exponentDifferenceNegator_result,
+            Cout   => open
+        );
+
+    register_Am_negator : NineBitAdderSubtractor
+        port map (
+            Ain    => "000000000",
+            Bin    => mantissaA_9Bit,
+            Op     => signA,
+            Result => register_Am_negator_result,
+            Cout   => open
+        );
+
+    register_Bm_negator : NineBitAdderSubtractor
+        port map (
+            Ain    => "000000000",
+            Bin    => mantissaB_9Bit,
+            Op     => signB,
+            Result => register_Bm_negator_result,
+            Cout   => open
+        );
+
+    mantissa_adder : NineBitAdderSubtractor
+        port map (
+            Ain    => register_Am_result,
+            Bin    => register_Bm_result,
+            Op     => '0',
+            Result => mantissa_adder_result,
+            Cout   => mantissaAddCarry
+        );
+
+    complementer_Sm : NineBitAdderSubtractor
+        port map (
+            Ain    => "000000000",
+            Bin    => mantissa_adder_result,
+            Op     => signAorSignBNegative,
+            Result => complementer_Sm_result,
+            Cout   => overflow
+        );
+
+end architecture;

@@ -1,0 +1,245 @@
+m255
+K3
+13
+cModel Technology
+Z0 dH:\CEG3156\Lab1\simulation\qsim
+vAdderDataPath
+Z1 !s100 OL5z^TQ^T<WCc<FFSR0e;0
+Z2 INS@PH=5S@J9^KK2bK@dLK1
+Z3 VmbWA2<5URRMfO^f;OMM=a3
+Z4 dH:\CEG3156\Lab1\simulation\qsim
+Z5 w1770783994
+Z6 8Adder.vo
+Z7 FAdder.vo
+L0 31
+Z8 OV;L;10.1d;51
+r1
+31
+Z9 !s90 -work|work|Adder.vo|
+Z10 o-work work -O0
+Z11 n@adder@data@path
+Z12 !s108 1770783996.380000
+Z13 !s107 Adder.vo|
+!i10b 1
+!s85 0
+!s101 -O0
+vAdderDataPath_vlg_check_tst
+Z14 !s100 T;KT]geaEPn1ToMGgZF8Q0
+Z15 IRQE0z24inD=c3OPRLWCK63
+Z16 V8i;U_R[MzS81V2OGQgM]81
+R4
+Z17 w1770783992
+Z18 8Adder.vt
+Z19 FAdder.vt
+L0 97
+R8
+r1
+31
+Z20 !s108 1770783996.769000
+Z21 !s107 Adder.vt|
+Z22 !s90 -work|work|Adder.vt|
+R10
+Z23 n@adder@data@path_vlg_check_tst
+!i10b 1
+!s85 0
+!s101 -O0
+vAdderDataPath_vlg_sample_tst
+Z24 !s100 d:nI`9;fNE@WT;73aIYW`3
+Z25 IQ>Gj[fVhzb7_zK36XB2?Z3
+Z26 V_oB6SLoHY4``5JiK=56G73
+R4
+R17
+R18
+R19
+L0 29
+R8
+r1
+31
+R20
+R21
+R22
+R10
+Z27 n@adder@data@path_vlg_sample_tst
+!i10b 1
+!s85 0
+!s101 -O0
+vAdderDataPath_vlg_vec_tst
+Z28 I59NKYnNml]4QR9`3o:bhF1
+Z29 VL>B>VKLTTL3D]_nYQ1g3?1
+R4
+R17
+R18
+R19
+Z30 L0 1096
+R8
+r1
+31
+R20
+R21
+R22
+R10
+Z31 n@adder@data@path_vlg_vec_tst
+Z32 !s100 bZ8;dU3Kf4V2AYCe52o0K1
+!i10b 1
+!s85 0
+!s101 -O0
+vFloatingPointAdder
+Z33 IbL:V9AQk>ao<Vj:60I47:0
+Z34 V58O=6n1_6Eh5^5h8hO@??3
+R4
+Z35 w1770796129
+R6
+R7
+L0 31
+R8
+r1
+31
+R9
+R10
+Z36 n@floating@point@adder
+Z37 !s100 JP63H0e5dXFfnI4Rm6d:Z0
+Z38 !s108 1770796132.076000
+R13
+!i10b 1
+!s85 0
+!s101 -O0
+vFloatingPointAdder_vlg_check_tst
+Z39 !s100 YZRz9kcIkRE:OmnC1Bf^<1
+Z40 IDm[Bd_4e@^=AVXHdneNnR2
+Z41 VELJ09_NmUdfU2CF>1k7XP3
+R4
+Z42 w1770796127
+R18
+R19
+L0 71
+R8
+r1
+31
+Z43 !s108 1770796132.571000
+R21
+R22
+R10
+Z44 n@floating@point@adder_vlg_check_tst
+!i10b 1
+!s85 0
+!s101 -O0
+vFloatingPointAdder_vlg_sample_tst
+Z45 !s100 `PZGRzbi@IRon:eTlnReA2
+Z46 IZB5G3H4HdgSVO7:cHk@G@2
+Z47 V`ZzMN47^_L^mk:BSZz^O73
+R4
+R42
+R18
+R19
+L0 29
+R8
+r1
+31
+R43
+R21
+R22
+R10
+Z48 n@floating@point@adder_vlg_sample_tst
+!i10b 1
+!s85 0
+!s101 -O0
+vFloatingPointAdder_vlg_vec_tst
+Z49 IV5S_Pk=R7GH@;_Wn>;ilX1
+Z50 V>E:igS7i<aC1J`jjW[>R52
+R4
+R42
+R18
+R19
+Z51 L0 668
+R8
+r1
+31
+R43
+R21
+R22
+R10
+Z52 n@floating@point@adder_vlg_vec_tst
+Z53 !s100 fZgWjmXKzOj>YEz_zSQCb2
+!i10b 1
+!s85 0
+!s101 -O0
+vFloatingPointMultiplier
+Z54 Ij^C^lo19nla@abUN6^Z_M0
+Z55 V23i_R2ai5iCMG^zamC6=T3
+R4
+Z56 w1770797795
+R6
+R7
+L0 31
+R8
+r1
+31
+R9
+R10
+Z57 n@floating@point@multiplier
+!i10b 1
+Z58 !s100 MaS2h<g5YNXfzOOmnSRdi3
+!s85 0
+Z59 !s108 1770797797.303000
+R13
+!s101 -O0
+vFloatingPointMultiplier_vlg_check_tst
+!i10b 1
+Z60 !s100 S]aBGW=h:WE``Cd^2F6<H1
+Z61 Iz_4cO=JiZ:=<b]RciK^En0
+Z62 VP5kPH@c_OWI_6TROPF?X@3
+R4
+Z63 w1770797792
+R18
+R19
+L0 71
+R8
+r1
+!s85 0
+31
+Z64 !s108 1770797797.688000
+Z65 !s107 Adder.vt|
+R22
+!s101 -O0
+R10
+Z66 n@floating@point@multiplier_vlg_check_tst
+vFloatingPointMultiplier_vlg_sample_tst
+!i10b 1
+Z67 !s100 hlE45@8A:9;KW=16T679;0
+Z68 Ia7gR8[m@j?=Ha;GS?^R<]1
+Z69 VHQWojKD5S^C^[=^g7:_?o1
+R4
+R63
+R18
+R19
+L0 29
+R8
+r1
+!s85 0
+31
+R64
+R65
+R22
+!s101 -O0
+R10
+Z70 n@floating@point@multiplier_vlg_sample_tst
+vFloatingPointMultiplier_vlg_vec_tst
+!i10b 1
+Z71 !s100 7BXmNQLF?]2AWId5k7RV:1
+Z72 IzRg]GZ7e5h@DH<[V3OOkE1
+Z73 VDiX654o^?bUBSz>lNzDjg1
+R4
+R63
+R18
+R19
+Z74 L0 479
+R8
+r1
+!s85 0
+31
+R64
+R65
+R22
+!s101 -O0
+R10
+Z75 n@floating@point@multiplier_vlg_vec_tst

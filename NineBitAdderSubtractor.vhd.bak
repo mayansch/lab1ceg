@@ -1,0 +1,40 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity NineBitAdderSubtractor is
+    port (
+        Ain, Bin : in  std_logic_vector(8 downto 0);
+        Op        : in  std_logic;
+        Result    : out std_logic_vector(8 downto 0);
+        Cout      : out std_logic
+    );
+end NineBitAdderSubtractor;
+
+architecture rtl of NineBitAdderSubtractor is
+
+    signal B_Feed, operation_Vector : std_logic_vector(8 downto 0);
+
+    component NineBitRippleAdder is
+        port (
+            Ain, Bin : in  std_logic_vector(8 downto 0);
+            CarryIN  : in  std_logic;
+            Sum      : out std_logic_vector(8 downto 0);
+            Cout     : out std_logic
+        );
+    end component;
+
+begin
+
+    operation_Vector <= (others => Op);
+    B_Feed <= Bin xor operation_Vector;
+
+    RA : NineBitRippleAdder
+        port map (
+            Ain     => Ain,
+            Bin     => B_Feed,
+            CarryIN => Op,
+            Sum     => Result,
+            Cout    => Cout
+        );
+
+end rtl;

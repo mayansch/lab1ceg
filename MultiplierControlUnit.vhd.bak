@@ -1,0 +1,110 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity MultiplierControlUnit is
+    port (
+        -- input signals
+        i_clock, i_reset  : in  std_logic;
+        i_INCPM, i_EXPVLD : in  std_logic;
+        -- control outputs
+        o_LDPE, o_LDAM    : out std_logic;
+        o_LDBM, o_overflow : out std_logic;
+        o_SHFTPM, o_INCPE : out std_logic;
+        -- state monitoring
+        o_s0, o_s1, o_s2, o_s3, o_s4 : out std_logic
+    );
+end entity;
+
+architecture rtl of MultiplierControlUnit is
+
+    component dflipflop is
+        port (
+            i_d           : in  std_logic;
+            i_clock       : in  std_logic;
+            i_enable      : in  std_logic;
+            i_async_reset : in  std_logic;
+            i_async_set   : in  std_logic;
+            o_q, o_qBar   : out std_logic
+        );
+    end component;
+
+    signal int_s0, int_s1, int_s2, int_s3, int_s4 : std_logic; 
+
+begin
+
+    -- state 0: reset and initialization
+    s0: dflipflop
+        port map (
+            i_d           => i_reset,
+            i_clock       => i_clock,
+            i_enable      => '1',
+            i_async_reset => '0',
+            i_async_set   => i_reset,
+            o_q           => int_s0,
+            o_qBar        => open
+        );
+
+    -- state 1: loading operands
+    s1: dflipflop
+        port map (
+            i_d           => int_s0,
+            i_clock       => i_clock,
+            i_enable      => '1',
+            i_async_reset => i_reset,
+            i_async_set   => '0',
+            o_q           => int_s1,
+            o_qBar        => open
+        );
+
+    -- state 2: overflow error handling
+    s2: dflipflop
+        port map (
+            i_d           => (int_s1 and i_INCPM and not i_EXPVLD) or int_s2,
+            i_clock       => i_clock,
+            i_enable      => '1',
+            i_async_reset => i_reset,
+            i_async_set   => '0',
+            o_q           => int_s2,
+            o_qBar        => open
+        );
+
+    -- state 3: mantissa shift and exponent increment
+    s3: dflipflop
+        port map (
+            i_d           => (int_s1 and i_INCPM and i_EXPVLD) or (int_s3 and i_EXPVLD),
+            i_clock       => i_clock,
+            i_enable      => '1',
+            i_async_reset => i_reset,
+            i_async_set   => '0',
+            o_q           => int_s3,
+            o_qBar        => open
+        );
+
+    -- state 4: completion and idle
+    s4: dflipflop
+        port map (
+            i_d           => (int_s1 and not i_INCPM) or (int_s3 and not i_INCPM) or int_s4,
+            i_clock       => i_clock,
+            i_enable      => '1',
+            i_async_reset => i_reset,
+            i_async_set   => '0',
+            o_q           => int_s4,
+            o_qBar        => open
+        );
+    
+    -- drive control outputs
+    o_LDPE     <= int_s0;
+    o_LDAM     <= int_s1;
+    o_LDBM     <= int_s1;
+    o_overflow <= int_s2;
+    o_SHFTPM   <= int_s3;
+    o_INCPE    <= int_s3;
+    
+    -- drive state monitoring outputs
+    o_s0 <= int_s0;
+    o_s1 <= int_s1;
+    o_s2 <= int_s2;
+    o_s3 <= int_s3;
+    o_s4 <= int_s4;
+
+end architecture;

@@ -1,0 +1,168 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity MultiplierDataPath is
+    port (
+        -- input signals
+        SignA, SignB         : in  std_logic;
+        MantissaA, MantissaB : in  std_logic_vector(7 downto 0);
+        ExponentA, ExponentB : in  std_logic_vector(6 downto 0);
+        GClock, GReset       : in  std_logic;
+        -- output signals
+        SignOut              : out std_logic;
+        MantissaOut          : out std_logic_vector(7 downto 0);
+        ExponentOut          : out std_logic_vector(6 downto 0);
+        Overflow             : out std_logic;
+        -- control signals
+        o_INCPM, o_EXPVLD    : out std_logic;
+        i_LDPE, i_LDAM, i_LDBM, i_overflow, i_SHFTPM, i_INCPE : in std_logic
+    );
+end entity;
+
+architecture rtl of MultiplierDataPath is
+
+    component EightBitComparator is
+        port (
+            i_Ai, i_Bi      : in  std_logic_vector(7 downto 0);
+            o_GT, o_LT, o_EQ : out std_logic
+        );
+    end component;
+
+    component EightBitAdderSubtractor is
+        port (
+            InputA, InputB : in  std_logic_vector(7 downto 0);
+            Operation      : in  std_logic;
+            Result         : out std_logic_vector(7 downto 0);
+            CarryOUT       : out std_logic
+        );
+    end component;
+
+    component EightBitGPRegister is
+        port (
+            i_resetBar                        : in  std_logic;
+            i_load, i_shiftLeft, i_shiftRight : in  std_logic;
+            i_decrement, i_increment          : in  std_logic;
+            i_serial_in_left, i_serial_in_right : in  std_logic;
+            i_clock                           : in  std_logic;
+            i_Value                           : in  std_logic_vector(7 downto 0);
+            o_Value                           : out std_logic_vector(7 downto 0)
+        );
+    end component;
+
+    component NineBitGPRegister is
+        port (
+            i_resetBar                        : in  std_logic;
+            i_load, i_shiftLeft, i_shiftRight : in  std_logic;
+            i_decrement, i_increment          : in  std_logic;
+            i_serial_in_left, i_serial_in_right : in  std_logic;
+            i_clock                           : in  std_logic;
+            i_Value                           : in  std_logic_vector(8 downto 0);
+            o_Value                           : out std_logic_vector(8 downto 0)
+        );
+    end component;
+
+    signal int_exponentsum             : std_logic_vector(7 downto 0);
+    signal int_finalexponent           : std_logic_vector(7 downto 0);
+    signal int_finalexponentregister   : std_logic_vector(7 downto 0);
+    signal int_exponentA8Bit           : std_logic_vector(7 downto 0);
+    signal int_exponentB8Bit           : std_logic_vector(7 downto 0);
+    signal int_mantissaARegisterOutput : std_logic_vector(8 downto 0);
+    signal int_mantissaBRegisterOutput : std_logic_vector(8 downto 0);
+    signal s_resetBar                  : std_logic;
+
+begin
+
+    -- basic logic setup
+    s_resetBar        <= not GReset;
+    int_exponentA8Bit <= '0' & ExponentA;
+    int_exponentB8Bit <= '0' & ExponentB;
+
+    -- add exponents together
+    exponentAdder: EightBitAdderSubtractor
+        port map (
+            InputA    => int_exponentA8Bit,
+            InputB    => int_exponentB8Bit,
+            Operation => '0',
+            Result    => int_exponentsum,
+            CarryOUT  => open
+        );
+
+    -- subtract bias from exponent sum
+    exponentSubtractor: EightBitAdderSubtractor
+        port map (
+            InputA    => int_exponentsum,
+            InputB    => "00111111", 
+            Operation => '1',
+            Result    => int_finalexponent,
+            CarryOUT  => open
+        );
+
+    -- store final exponent result
+    productExponent: EightBitGPRegister
+        port map (
+            i_resetBar        => s_resetBar,
+            i_load            => '0', 
+            i_shiftLeft       => '0', 
+            i_shiftRight      => '0',
+            i_decrement       => '0', 
+            i_increment       => '0',
+            i_serial_in_left  => '0', 
+            i_serial_in_right => '0',
+            i_clock           => Gclock,
+            i_Value           => int_exponentsum,
+            o_Value           => int_finalexponentregister
+        );
+
+    -- check for exponent validity
+    exponentComparator: EightBitComparator 
+        port map (
+            i_Ai => int_finalexponentregister,
+            i_Bi => "01111111",
+            o_GT => open, 
+            o_LT => o_EXPVLD, 
+            o_EQ => open
+        );
+
+    -- store mantissa A with hidden bit
+    mantissaARegister: NineBitGPRegister
+        port map (
+            i_resetBar        => s_resetBar,
+            i_load            => i_LDAM, 
+            i_shiftLeft       => '0', 
+            i_shiftRight      => '0', 
+            i_decrement       => '0', 
+            i_increment       => '0',
+            i_serial_in_left  => '0', 
+            i_serial_in_right => '0',
+            i_clock           => GClock,
+            i_Value           => '1' & MantissaA, 
+            o_Value           => int_mantissaARegisterOutput
+        );
+
+    -- store mantissa B with hidden bit
+    mantissaBRegister: NineBitGPRegister
+        port map (
+            i_resetBar        => s_resetBar,
+            i_load            => i_LDBM, 
+            i_shiftLeft       => '0', 
+            i_shiftRight      => '0', 
+            i_decrement       => '0', 
+            i_increment       => '0',
+            i_serial_in_left  => '0', 
+            i_serial_in_right => '0',
+            i_clock           => GClock,
+            i_Value           => '1' & MantissaB, 
+            o_Value           => int_mantissaBRegisterOutput
+        );
+
+    -- check for mantissa increment signal
+    mantissaComparator: EightBitComparator 
+        port map (
+            i_Ai => "00000000", 
+            i_Bi => "00000001",
+            o_GT => o_INCPM, 
+            o_LT => open, 
+            o_EQ => open        
+        );
+        
+end architecture;

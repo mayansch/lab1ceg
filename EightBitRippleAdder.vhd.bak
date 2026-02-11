@@ -1,0 +1,76 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity EightBitRippleAdder is
+	port (
+		Ain, Bin : in std_logic_vector(7 downto 0);
+		Cin : std_logic;
+		Sum : out std_logic_vector(7 downto 0);
+		Cout : out std_logic
+	);
+end entity EightBitRippleAdder;
+
+architecture rtl of EightBitRippleAdder is
+	signal c : std_logic_vector(7 downto 0);
+	
+	component FullAdder is
+		port(
+			A, B, Cin : in std_logic;
+			S, Cout : out std_logic
+		);
+	end component;
+	
+begin
+	
+	FA0: FullAdder
+	port map (
+		A => Ain(0), B => Bin(0), Cin => Cin,
+		s => Sum(0), Cout => c(0)
+	);
+	
+	FA1: FullAdder
+	port map (
+		A => Ain(1), B => Bin(1), Cin => c(0),
+		s => Sum(1), Cout => c(1)
+	);
+	
+	FA2: FullAdder
+	port map (
+		A => Ain(2), B => Bin(2), Cin => c(1),
+		s => Sum(2), Cout => c(2)
+	);
+	
+	FA3: FullAdder
+	port map (
+		A => Ain(3), B => Bin(3), Cin => c(2),
+		s => Sum(3), Cout => c(3)
+	);
+	
+	FA4: FullAdder
+	port map (
+		A => Ain(4), B => Bin(4), Cin => c(3),
+		s => Sum(4), Cout => c(4)
+	);
+	
+	FA5: FullAdder
+	port map (
+		A => Ain(5), B => Bin(5), Cin => c(4),
+		s => Sum(5), Cout => c(5)
+	);
+	
+	FA6: FullAdder
+	port map (
+		A => Ain(6), B => Bin(6), Cin => c(5),
+		s => Sum(6), Cout => c(6)
+	);
+	
+	FA7: FullAdder
+	port map (
+		A => Ain(7), B => Bin(7), Cin => c(6),
+		s => Sum(7), Cout => c(7)
+	);
+	
+	CarryOut <= c(7) xor c(6);
+	
+end rtl;
+		

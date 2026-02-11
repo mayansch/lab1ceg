@@ -1,0 +1,1149 @@
+Analysis & Synthesis report for Adder
+Wed Feb 11 03:15:37 2026
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis DSP Block Usage Summary
+  9. Registers Removed During Synthesis
+ 10. General Register Statistics
+ 11. Inverted Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Parameter Settings for Inferred Entity Instance: MultiplierDataPath:dp|lpm_mult:Mult0
+ 14. lpm_mult Parameter Settings by Entity Instance
+ 15. Port Connectivity Checks: "MultiplierControlUnit:cp|dflipflop:s4"
+ 16. Port Connectivity Checks: "MultiplierControlUnit:cp|dflipflop:s3"
+ 17. Port Connectivity Checks: "MultiplierControlUnit:cp|dflipflop:s2"
+ 18. Port Connectivity Checks: "MultiplierControlUnit:cp|dflipflop:s1"
+ 19. Port Connectivity Checks: "MultiplierControlUnit:cp|dflipflop:s0"
+ 20. Port Connectivity Checks: "MultiplierControlUnit:cp"
+ 21. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister"
+ 22. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF8"
+ 23. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX8"
+ 24. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF7"
+ 25. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX7"
+ 26. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF6"
+ 27. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX6"
+ 28. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF5"
+ 29. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX5"
+ 30. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF4"
+ 31. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX4"
+ 32. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF3"
+ 33. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX3"
+ 34. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF2"
+ 35. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX2"
+ 36. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF1"
+ 37. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX1"
+ 38. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF0"
+ 39. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX0"
+ 40. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToThreeEncoder:ENC"
+ 41. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC"
+ 42. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC"
+ 43. Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister"
+ 44. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitComparator:exponentComparator|oneBitComparator:comp7"
+ 45. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitComparator:exponentComparator"
+ 46. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:7:dff_inst"
+ 47. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:7:mux_inst"
+ 48. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:6:dff_inst"
+ 49. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:6:mux_inst"
+ 50. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:5:dff_inst"
+ 51. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:5:mux_inst"
+ 52. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:4:dff_inst"
+ 53. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:4:mux_inst"
+ 54. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:3:dff_inst"
+ 55. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:3:mux_inst"
+ 56. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:2:dff_inst"
+ 57. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:2:mux_inst"
+ 58. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:1:dff_inst"
+ 59. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:1:mux_inst"
+ 60. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:0:dff_inst"
+ 61. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:0:mux_inst"
+ 62. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToThreeEncoder:op_encoder"
+ 63. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder"
+ 64. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder"
+ 65. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent"
+ 66. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor"
+ 67. Port Connectivity Checks: "MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder"
+ 68. Elapsed Time Per Partition
+ 69. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Wed Feb 11 03:15:37 2026           ;
+; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; Adder                                           ;
+; Top-level Entity Name              ; FloatingPointMultiplier                         ;
+; Family                             ; Cyclone IV E                                    ;
+; Total logic elements               ; 73                                              ;
+;     Total combinational functions  ; 55                                              ;
+;     Dedicated logic registers      ; 30                                              ;
+; Total registers                    ; 30                                              ;
+; Total pins                         ; 51                                              ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 1                                               ;
+; Total PLLs                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++----------------------------------------------------------------------------+-------------------------+--------------------+
+; Option                                                                     ; Setting                 ; Default Value      ;
++----------------------------------------------------------------------------+-------------------------+--------------------+
+; Device                                                                     ; EP4CE115F29C7           ;                    ;
+; Top-level entity name                                                      ; FloatingPointMultiplier ; Adder              ;
+; Family name                                                                ; Cyclone IV E            ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                     ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                      ; On                 ;
+; Enable compact report table                                                ; Off                     ; Off                ;
+; Restructure Multiplexers                                                   ; Auto                    ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                     ; Off                ;
+; Preserve fewer node names                                                  ; On                      ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                     ; Off                ;
+; Verilog Version                                                            ; Verilog_2001            ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993               ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto                    ; Auto               ;
+; Safe State Machine                                                         ; Off                     ; Off                ;
+; Extract Verilog State Machines                                             ; On                      ; On                 ;
+; Extract VHDL State Machines                                                ; On                      ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                     ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000                    ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                     ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                      ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                      ; On                 ;
+; Parallel Synthesis                                                         ; On                      ; On                 ;
+; DSP Block Balancing                                                        ; Auto                    ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                      ; On                 ;
+; Power-Up Don't Care                                                        ; On                      ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                     ; Off                ;
+; Remove Duplicate Registers                                                 ; On                      ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                     ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                     ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                     ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                     ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                     ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                      ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                     ; Off                ;
+; Optimization Technique                                                     ; Balanced                ; Balanced           ;
+; Carry Chain Length                                                         ; 70                      ; 70                 ;
+; Auto Carry Chains                                                          ; On                      ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                      ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                     ; Off                ;
+; Auto ROM Replacement                                                       ; On                      ; On                 ;
+; Auto RAM Replacement                                                       ; On                      ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                      ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto                    ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto                    ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                      ; On                 ;
+; Strict RAM Replacement                                                     ; Off                     ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                      ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                     ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                      ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                     ; Off                ;
+; Auto Resource Sharing                                                      ; Off                     ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                     ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                     ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                     ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                      ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                     ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                      ; On                 ;
+; Report Parameter Settings                                                  ; On                      ; On                 ;
+; Report Source Assignments                                                  ; On                      ; On                 ;
+; Report Connectivity Checks                                                 ; On                      ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                     ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                       ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation      ; Normal compilation ;
+; HDL message level                                                          ; Level2                  ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                     ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000                    ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000                    ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                     ; 100                ;
+; Clock MUX Protection                                                       ; On                      ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                     ; Off                ;
+; Block Design Naming                                                        ; Auto                    ; Auto               ;
+; SDC constraint protection                                                  ; Off                     ; Off                ;
+; Synthesis Effort                                                           ; Auto                    ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                      ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                     ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium                  ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto                    ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                      ; On                 ;
+; Synthesis Seed                                                             ; 1                       ; 1                  ;
++----------------------------------------------------------------------------+-------------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 20     ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                          ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                      ; Library ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------+---------+
+; EightBitComparator.vhd           ; yes             ; User VHDL File               ; H:/CEG3156/Lab1/EightBitComparator.vhd                            ;         ;
+; oneBitComparator.vhd             ; yes             ; User VHDL File               ; H:/CEG3156/Lab1/oneBitComparator.vhd                              ;         ;
+; EightBitRippleAdder.vhd          ; yes             ; User VHDL File               ; H:/CEG3156/Lab1/EightBitRippleAdder.vhd                           ;         ;
+; FullAdder.vhd                    ; yes             ; User VHDL File               ; H:/CEG3156/Lab1/FullAdder.vhd                                     ;         ;
+; HalfAdder.vhd                    ; yes             ; User VHDL File               ; H:/CEG3156/Lab1/HalfAdder.vhd                                     ;         ;
+; NineBitAdderSubtractor.vhd       ; yes             ; User VHDL File               ; H:/CEG3156/Lab1/NineBitAdderSubtractor.vhd                        ;         ;
+; EightBitGPRegister.vhd           ; yes             ; User VHDL File               ; H:/CEG3156/Lab1/EightBitGPRegister.vhd                            ;         ;
+; enARdFF_2.vhd                    ; yes             ; User VHDL File               ; H:/CEG3156/Lab1/enARdFF_2.vhd                                     ;         ;
+; EightToOneMux.vhd                ; yes             ; User VHDL File               ; H:/CEG3156/Lab1/EightToOneMux.vhd                                 ;         ;
+; dflipflop.vhd                    ; yes             ; User VHDL File               ; H:/CEG3156/Lab1/dflipflop.vhd                                     ;         ;
+; NineBitRippleAdder.vhd           ; yes             ; User VHDL File               ; H:/CEG3156/Lab1/NineBitRippleAdder.vhd                            ;         ;
+; NineBitGPRegister.vhd            ; yes             ; User VHDL File               ; H:/CEG3156/Lab1/NineBitGPRegister.vhd                             ;         ;
+; EightBitAdderSubtractor.vhd      ; yes             ; User VHDL File               ; H:/CEG3156/Lab1/EightBitAdderSubtractor.vhd                       ;         ;
+; EightToThreeEncoder.vhd          ; yes             ; User VHDL File               ; H:/CEG3156/Lab1/EightToThreeEncoder.vhd                           ;         ;
+; MultiplierDataPath.vhd           ; yes             ; User VHDL File               ; H:/CEG3156/Lab1/MultiplierDataPath.vhd                            ;         ;
+; MultiplierControlUnit.vhd        ; yes             ; User VHDL File               ; H:/CEG3156/Lab1/MultiplierControlUnit.vhd                         ;         ;
+; FloatingPointMultiplier.vhd      ; yes             ; User VHDL File               ; H:/CEG3156/Lab1/FloatingPointMultiplier.vhd                       ;         ;
+; lpm_mult.tdf                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mult.tdf    ;         ;
+; aglobal130.inc                   ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc  ;         ;
+; lpm_add_sub.inc                  ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_add_sub.inc ;         ;
+; multcore.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/multcore.inc    ;         ;
+; bypassff.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/bypassff.inc    ;         ;
+; altshift.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altshift.inc    ;         ;
+; db/mult_eat.tdf                  ; yes             ; Auto-Generated Megafunction  ; H:/CEG3156/Lab1/db/mult_eat.tdf                                   ;         ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------+---------+
+
+
++-------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                 ;
++---------------------------------------------+---------------+
+; Resource                                    ; Usage         ;
++---------------------------------------------+---------------+
+; Estimated Total logic elements              ; 73            ;
+;                                             ;               ;
+; Total combinational functions               ; 55            ;
+; Logic element usage by number of LUT inputs ;               ;
+;     -- 4 input functions                    ; 30            ;
+;     -- 3 input functions                    ; 11            ;
+;     -- <=2 input functions                  ; 14            ;
+;                                             ;               ;
+; Logic elements by mode                      ;               ;
+;     -- normal mode                          ; 55            ;
+;     -- arithmetic mode                      ; 0             ;
+;                                             ;               ;
+; Total registers                             ; 30            ;
+;     -- Dedicated logic registers            ; 30            ;
+;     -- I/O registers                        ; 0             ;
+;                                             ;               ;
+; I/O pins                                    ; 51            ;
+; Embedded Multiplier 9-bit elements          ; 1             ;
+; Maximum fan-out node                        ; i_clock~input ;
+; Maximum fan-out                             ; 30            ;
+; Total fan-out                               ; 380           ;
+; Average fan-out                             ; 2.01          ;
++---------------------------------------------+---------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                        ;
++----------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                         ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                        ; Library Name ;
++----------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; |FloatingPointMultiplier                           ; 55 (0)            ; 30 (0)       ; 0           ; 1            ; 1       ; 0         ; 51   ; 0            ; |FloatingPointMultiplier                                                                                                                                                   ; work         ;
+;    |MultiplierControlUnit:cp|                      ; 6 (2)             ; 5 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierControlUnit:cp                                                                                                                          ; work         ;
+;       |dflipflop:s0|                               ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierControlUnit:cp|dflipflop:s0                                                                                                             ; work         ;
+;       |dflipflop:s1|                               ; 1 (1)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierControlUnit:cp|dflipflop:s1                                                                                                             ; work         ;
+;       |dflipflop:s2|                               ; 2 (2)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierControlUnit:cp|dflipflop:s2                                                                                                             ; work         ;
+;       |dflipflop:s3|                               ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierControlUnit:cp|dflipflop:s3                                                                                                             ; work         ;
+;       |dflipflop:s4|                               ; 1 (1)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierControlUnit:cp|dflipflop:s4                                                                                                             ; work         ;
+;    |MultiplierDataPath:dp|                         ; 49 (9)            ; 25 (0)       ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp                                                                                                                             ; work         ;
+;       |EightBitAdderSubtractor:exponentAdder|      ; 6 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder                                                                                       ; work         ;
+;          |EightBitRippleAdder:RA|                  ; 6 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA                                                                ; work         ;
+;             |FullAdder:FA0|                        ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA0                                                  ; work         ;
+;                |HalfAdder:ha_low|                  ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA0|HalfAdder:ha_low                                 ; work         ;
+;             |FullAdder:FA1|                        ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA1                                                  ; work         ;
+;             |FullAdder:FA2|                        ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA2                                                  ; work         ;
+;             |FullAdder:FA3|                        ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA3                                                  ; work         ;
+;             |FullAdder:FA4|                        ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA4                                                  ; work         ;
+;             |FullAdder:FA5|                        ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA5                                                  ; work         ;
+;       |EightBitAdderSubtractor:exponentSubtractor| ; 12 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor                                                                                  ; work         ;
+;          |EightBitRippleAdder:RA|                  ; 12 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA                                                           ; work         ;
+;             |FullAdder:FA1|                        ; 2 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA1                                             ; work         ;
+;                |HalfAdder:ha_high|                 ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA1|HalfAdder:ha_high                           ; work         ;
+;             |FullAdder:FA2|                        ; 2 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA2                                             ; work         ;
+;                |HalfAdder:ha_high|                 ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA2|HalfAdder:ha_high                           ; work         ;
+;             |FullAdder:FA3|                        ; 2 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA3                                             ; work         ;
+;                |HalfAdder:ha_high|                 ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA3|HalfAdder:ha_high                           ; work         ;
+;             |FullAdder:FA4|                        ; 2 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA4                                             ; work         ;
+;                |HalfAdder:ha_high|                 ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA4|HalfAdder:ha_high                           ; work         ;
+;             |FullAdder:FA5|                        ; 2 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA5                                             ; work         ;
+;                |HalfAdder:ha_high|                 ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA5|HalfAdder:ha_high                           ; work         ;
+;             |FullAdder:FA6|                        ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA6                                             ; work         ;
+;                |HalfAdder:ha_high|                 ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA6|HalfAdder:ha_high                           ; work         ;
+;             |FullAdder:FA7|                        ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA7                                             ; work         ;
+;                |HalfAdder:ha_high|                 ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA7|HalfAdder:ha_high                           ; work         ;
+;       |EightBitComparator:exponentComparator|      ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitComparator:exponentComparator                                                                                       ; work         ;
+;          |oneBitComparator:comp0|                  ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitComparator:exponentComparator|oneBitComparator:comp0                                                                ; work         ;
+;       |EightBitGPRegister:productExponent|         ; 21 (1)            ; 8 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent                                                                                          ; work         ;
+;          |EightBitAdderSubtractor:dec_adder|       ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder                                                        ; work         ;
+;             |EightBitRippleAdder:RA|               ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA                                 ; work         ;
+;                |FullAdder:FA4|                     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA4                   ; work         ;
+;          |EightBitAdderSubtractor:inc_adder|       ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder                                                        ; work         ;
+;             |EightBitRippleAdder:RA|               ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA                                 ; work         ;
+;                |FullAdder:FA4|                     ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA4                   ; work         ;
+;                   |HalfAdder:ha_high|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA4|HalfAdder:ha_high ; work         ;
+;          |EightToOneMux:\gen_bits:1:mux_inst|      ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:1:mux_inst                                                       ; work         ;
+;          |EightToOneMux:\gen_bits:2:mux_inst|      ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:2:mux_inst                                                       ; work         ;
+;          |EightToOneMux:\gen_bits:3:mux_inst|      ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:3:mux_inst                                                       ; work         ;
+;          |EightToOneMux:\gen_bits:4:mux_inst|      ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:4:mux_inst                                                       ; work         ;
+;          |EightToOneMux:\gen_bits:5:mux_inst|      ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:5:mux_inst                                                       ; work         ;
+;          |EightToOneMux:\gen_bits:6:mux_inst|      ; 4 (4)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:6:mux_inst                                                       ; work         ;
+;          |EightToOneMux:\gen_bits:7:mux_inst|      ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:7:mux_inst                                                       ; work         ;
+;          |enARdFF_2:\gen_bits:0:dff_inst|          ; 2 (2)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:0:dff_inst                                                           ; work         ;
+;          |enARdFF_2:\gen_bits:1:dff_inst|          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:1:dff_inst                                                           ; work         ;
+;          |enARdFF_2:\gen_bits:2:dff_inst|          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:2:dff_inst                                                           ; work         ;
+;          |enARdFF_2:\gen_bits:3:dff_inst|          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:3:dff_inst                                                           ; work         ;
+;          |enARdFF_2:\gen_bits:4:dff_inst|          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:4:dff_inst                                                           ; work         ;
+;          |enARdFF_2:\gen_bits:5:dff_inst|          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:5:dff_inst                                                           ; work         ;
+;          |enARdFF_2:\gen_bits:6:dff_inst|          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:6:dff_inst                                                           ; work         ;
+;          |enARdFF_2:\gen_bits:7:dff_inst|          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:7:dff_inst                                                           ; work         ;
+;       |NineBitGPRegister:mantissaARegister|        ; 0 (0)             ; 9 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister                                                                                         ; work         ;
+;          |enARdFF_2:DFF0|                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF0                                                                          ; work         ;
+;          |enARdFF_2:DFF1|                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF1                                                                          ; work         ;
+;          |enARdFF_2:DFF2|                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF2                                                                          ; work         ;
+;          |enARdFF_2:DFF3|                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF3                                                                          ; work         ;
+;          |enARdFF_2:DFF4|                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF4                                                                          ; work         ;
+;          |enARdFF_2:DFF5|                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF5                                                                          ; work         ;
+;          |enARdFF_2:DFF6|                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF6                                                                          ; work         ;
+;          |enARdFF_2:DFF7|                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF7                                                                          ; work         ;
+;          |enARdFF_2:DFF8|                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF8                                                                          ; work         ;
+;       |NineBitGPRegister:mantissaBRegister|        ; 0 (0)             ; 8 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister                                                                                         ; work         ;
+;          |enARdFF_2:DFF0|                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|enARdFF_2:DFF0                                                                          ; work         ;
+;          |enARdFF_2:DFF1|                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|enARdFF_2:DFF1                                                                          ; work         ;
+;          |enARdFF_2:DFF2|                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|enARdFF_2:DFF2                                                                          ; work         ;
+;          |enARdFF_2:DFF3|                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|enARdFF_2:DFF3                                                                          ; work         ;
+;          |enARdFF_2:DFF4|                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|enARdFF_2:DFF4                                                                          ; work         ;
+;          |enARdFF_2:DFF5|                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|enARdFF_2:DFF5                                                                          ; work         ;
+;          |enARdFF_2:DFF6|                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|enARdFF_2:DFF6                                                                          ; work         ;
+;          |enARdFF_2:DFF7|                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|enARdFF_2:DFF7                                                                          ; work         ;
+;       |lpm_mult:Mult0|                             ; 0 (0)             ; 0 (0)        ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|lpm_mult:Mult0                                                                                                              ; work         ;
+;          |mult_eat:auto_generated|                 ; 0 (0)             ; 0 (0)        ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |FloatingPointMultiplier|MultiplierDataPath:dp|lpm_mult:Mult0|mult_eat:auto_generated                                                                                      ; work         ;
++----------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary        ;
++---------------------------------------+-------------+
+; Statistic                             ; Number Used ;
++---------------------------------------+-------------+
+; Simple Multipliers (9-bit)            ; 1           ;
+; Simple Multipliers (18-bit)           ; 0           ;
+; Embedded Multiplier Blocks            ; --          ;
+; Embedded Multiplier 9-bit elements    ; 1           ;
+; Signed Embedded Multipliers           ; 0           ;
+; Unsigned Embedded Multipliers         ; 1           ;
+; Mixed Sign Embedded Multipliers       ; 0           ;
+; Variable Sign Embedded Multipliers    ; 0           ;
+; Dedicated Input Shift Register Chains ; 0           ;
++---------------------------------------+-------------+
+Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                          ;
++--------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+
+; Register name                                                                  ; Reason for Removal                                                                         ;
++--------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+
+; MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|enARdFF_2:DFF8|int_q ; Merged with MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF8|int_q ;
+; Total Number of Removed Registers = 1                                          ;                                                                                            ;
++--------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 30    ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 1     ;
+; Number of registers using Asynchronous Clear ; 30    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 25    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-------------------------------------------------------+
+; Inverted Register Statistics                          ;
++---------------------------------------------+---------+
+; Inverted Register                           ; Fan out ;
++---------------------------------------------+---------+
+; MultiplierControlUnit:cp|dflipflop:s0|q_reg ; 11      ;
+; Total number of inverted registers = 1      ;         ;
++---------------------------------------------+---------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------+
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:1:dff_inst|int_q ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: MultiplierDataPath:dp|lpm_mult:Mult0 ;
++------------------------------------------------+--------------+-----------------------+
+; Parameter Name                                 ; Value        ; Type                  ;
++------------------------------------------------+--------------+-----------------------+
+; AUTO_CARRY_CHAINS                              ; ON           ; AUTO_CARRY            ;
+; IGNORE_CARRY_BUFFERS                           ; OFF          ; IGNORE_CARRY          ;
+; AUTO_CASCADE_CHAINS                            ; ON           ; AUTO_CASCADE          ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF          ; IGNORE_CASCADE        ;
+; LPM_WIDTHA                                     ; 9            ; Untyped               ;
+; LPM_WIDTHB                                     ; 9            ; Untyped               ;
+; LPM_WIDTHP                                     ; 18           ; Untyped               ;
+; LPM_WIDTHR                                     ; 18           ; Untyped               ;
+; LPM_WIDTHS                                     ; 1            ; Untyped               ;
+; LPM_REPRESENTATION                             ; UNSIGNED     ; Untyped               ;
+; LPM_PIPELINE                                   ; 0            ; Untyped               ;
+; LATENCY                                        ; 0            ; Untyped               ;
+; INPUT_A_IS_CONSTANT                            ; NO           ; Untyped               ;
+; INPUT_B_IS_CONSTANT                            ; NO           ; Untyped               ;
+; USE_EAB                                        ; OFF          ; Untyped               ;
+; MAXIMIZE_SPEED                                 ; 5            ; Untyped               ;
+; DEVICE_FAMILY                                  ; Cyclone IV E ; Untyped               ;
+; CARRY_CHAIN                                    ; MANUAL       ; Untyped               ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT          ; TECH_MAPPER_APEX20K   ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO         ; Untyped               ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0            ; Untyped               ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0            ; Untyped               ;
+; CBXI_PARAMETER                                 ; mult_eat     ; Untyped               ;
+; INPUT_A_FIXED_VALUE                            ; Bx           ; Untyped               ;
+; INPUT_B_FIXED_VALUE                            ; Bx           ; Untyped               ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF          ; Untyped               ;
++------------------------------------------------+--------------+-----------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------+
+; lpm_mult Parameter Settings by Entity Instance                               ;
++---------------------------------------+--------------------------------------+
+; Name                                  ; Value                                ;
++---------------------------------------+--------------------------------------+
+; Number of entity instances            ; 1                                    ;
+; Entity Instance                       ; MultiplierDataPath:dp|lpm_mult:Mult0 ;
+;     -- LPM_WIDTHA                     ; 9                                    ;
+;     -- LPM_WIDTHB                     ; 9                                    ;
+;     -- LPM_WIDTHP                     ; 18                                   ;
+;     -- LPM_REPRESENTATION             ; UNSIGNED                             ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                   ;
+;     -- INPUT_B_IS_CONSTANT            ; NO                                   ;
+;     -- USE_EAB                        ; OFF                                  ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                 ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                   ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                   ;
++---------------------------------------+--------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierControlUnit:cp|dflipflop:s4"                                                     ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_enable    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; i_async_set ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_qbar      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierControlUnit:cp|dflipflop:s3"                                                     ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_enable    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; i_async_set ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_qbar      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierControlUnit:cp|dflipflop:s2"                                                     ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_enable    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; i_async_set ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_qbar      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierControlUnit:cp|dflipflop:s1"                                                     ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_enable    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; i_async_set ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_qbar      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierControlUnit:cp|dflipflop:s0"                                                       ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                             ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_enable      ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; i_async_reset ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_qbar        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierControlUnit:cp"                                                           ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; o_s0 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; o_s1 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; o_s2 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; o_s3 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; o_s4 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister" ;
++-------------------+-------+----------+------------------------------------------------+
+; Port              ; Type  ; Severity ; Details                                        ;
++-------------------+-------+----------+------------------------------------------------+
+; i_shiftleft       ; Input ; Info     ; Stuck at GND                                   ;
+; i_shiftright      ; Input ; Info     ; Stuck at GND                                   ;
+; i_decrement       ; Input ; Info     ; Stuck at GND                                   ;
+; i_increment       ; Input ; Info     ; Stuck at GND                                   ;
+; i_serial_in_left  ; Input ; Info     ; Stuck at GND                                   ;
+; i_serial_in_right ; Input ; Info     ; Stuck at GND                                   ;
+; i_value[8]        ; Input ; Info     ; Stuck at VCC                                   ;
++-------------------+-------+----------+------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF8"             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX8" ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                 ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+; i_mux[7..6] ; Input ; Info     ; Stuck at VCC                                                            ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF7"             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX7" ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                 ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+; i_mux[7..6] ; Input ; Info     ; Stuck at VCC                                                            ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF6"             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX6" ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                 ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+; i_mux[7..6] ; Input ; Info     ; Stuck at VCC                                                            ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF5"             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX5" ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                 ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+; i_mux[7..6] ; Input ; Info     ; Stuck at VCC                                                            ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF4"             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX4" ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                 ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+; i_mux[7..6] ; Input ; Info     ; Stuck at VCC                                                            ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF3"             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX3" ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                 ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+; i_mux[7..6] ; Input ; Info     ; Stuck at VCC                                                            ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF2"             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX2" ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                 ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+; i_mux[7..6] ; Input ; Info     ; Stuck at VCC                                                            ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF1"             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX1" ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                 ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+; i_mux[7..6] ; Input ; Info     ; Stuck at VCC                                                            ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF0"             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX0" ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                 ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+; i_mux[7..6] ; Input ; Info     ; Stuck at VCC                                                            ;
++-------------+-------+----------+-------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToThreeEncoder:ENC" ;
++--------------+-------+----------+-----------------------------------------------------------------------------+
+; Port         ; Type  ; Severity ; Details                                                                     ;
++--------------+-------+----------+-----------------------------------------------------------------------------+
+; inputs[7..6] ; Input ; Info     ; Stuck at GND                                                                ;
+; inputs[0]    ; Input ; Info     ; Stuck at GND                                                                ;
++--------------+-------+----------+-----------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC"       ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                             ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; inputb[8..1] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; inputb[0]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; operation    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; carryout     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC"       ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                             ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; inputb[8..1] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; inputb[0]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; operation    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; carryout     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister" ;
++-------------------+-------+----------+------------------------------------------------+
+; Port              ; Type  ; Severity ; Details                                        ;
++-------------------+-------+----------+------------------------------------------------+
+; i_shiftleft       ; Input ; Info     ; Stuck at GND                                   ;
+; i_shiftright      ; Input ; Info     ; Stuck at GND                                   ;
+; i_decrement       ; Input ; Info     ; Stuck at GND                                   ;
+; i_increment       ; Input ; Info     ; Stuck at GND                                   ;
+; i_serial_in_left  ; Input ; Info     ; Stuck at GND                                   ;
+; i_serial_in_right ; Input ; Info     ; Stuck at GND                                   ;
+; i_value[8]        ; Input ; Info     ; Stuck at VCC                                   ;
++-------------------+-------+----------+------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitComparator:exponentComparator|oneBitComparator:comp7" ;
++--------------+-------+----------+------------------------------------------------------------------------------+
+; Port         ; Type  ; Severity ; Details                                                                      ;
++--------------+-------+----------+------------------------------------------------------------------------------+
+; i_gtprevious ; Input ; Info     ; Stuck at GND                                                                 ;
+; i_ltprevious ; Input ; Info     ; Stuck at GND                                                                 ;
++--------------+-------+----------+------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitComparator:exponentComparator"                              ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port       ; Type   ; Severity ; Details                                                                             ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_bi[6..0] ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; i_bi[7]    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_gt       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; o_eq       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:7:dff_inst" ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                                ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.    ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:7:mux_inst" ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                                ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+; i_mux[7..6] ; Input ; Info     ; Stuck at VCC                                                                           ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:6:dff_inst" ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                                ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.    ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:6:mux_inst" ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                                ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+; i_mux[7..6] ; Input ; Info     ; Stuck at VCC                                                                           ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:5:dff_inst" ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                                ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.    ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:5:mux_inst" ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                                ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+; i_mux[7..6] ; Input ; Info     ; Stuck at VCC                                                                           ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:4:dff_inst" ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                                ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.    ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:4:mux_inst" ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                                ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+; i_mux[7..6] ; Input ; Info     ; Stuck at VCC                                                                           ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:3:dff_inst" ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                                ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.    ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:3:mux_inst" ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                                ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+; i_mux[7..6] ; Input ; Info     ; Stuck at VCC                                                                           ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:2:dff_inst" ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                                ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.    ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:2:mux_inst" ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                                ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+; i_mux[7..6] ; Input ; Info     ; Stuck at VCC                                                                           ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:1:dff_inst" ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                                ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.    ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:1:mux_inst" ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                                ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+; i_mux[7..6] ; Input ; Info     ; Stuck at VCC                                                                           ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:0:dff_inst" ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                                ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.    ;
++--------+--------+----------+----------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:0:mux_inst" ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                                ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+; i_mux[7..6] ; Input ; Info     ; Stuck at VCC                                                                           ;
++-------------+-------+----------+----------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToThreeEncoder:op_encoder" ;
++--------------+-------+----------+-----------------------------------------------------------------------------------+
+; Port         ; Type  ; Severity ; Details                                                                           ;
++--------------+-------+----------+-----------------------------------------------------------------------------------+
+; inputs[7..6] ; Input ; Info     ; Stuck at GND                                                                      ;
+; inputs[0]    ; Input ; Info     ; Stuck at GND                                                                      ;
++--------------+-------+----------+-----------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder" ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                             ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; inputb[7..1] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; inputb[0]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; operation    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; carryout     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder" ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                             ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; inputb[7..1] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; inputb[0]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; operation    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; carryout     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitGPRegister:productExponent" ;
++-------------------+-------+----------+-----------------------------------------------+
+; Port              ; Type  ; Severity ; Details                                       ;
++-------------------+-------+----------+-----------------------------------------------+
+; i_shiftleft       ; Input ; Info     ; Stuck at GND                                  ;
+; i_shiftright      ; Input ; Info     ; Stuck at GND                                  ;
+; i_decrement       ; Input ; Info     ; Stuck at GND                                  ;
+; i_serial_in_left  ; Input ; Info     ; Stuck at GND                                  ;
+; i_serial_in_right ; Input ; Info     ; Stuck at GND                                  ;
++-------------------+-------+----------+-----------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor"                           ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                             ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; inputb[5..0] ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; inputb[7..6] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; operation    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; carryout     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder"                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; inputa[7] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; inputb[7] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; operation ; Input  ; Info     ; Stuck at GND                                                                        ;
+; carryout  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:01     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Wed Feb 11 03:15:29 2026
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Adder -c Adder
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 2 design units, including 1 entities, in source file eightbitcomparator.vhd
+    Info (12022): Found design unit 1: EightBitComparator-rtl
+    Info (12023): Found entity 1: EightBitComparator
+Info (12021): Found 2 design units, including 1 entities, in source file onebitcomparator.vhd
+    Info (12022): Found design unit 1: oneBitComparator-rtl
+    Info (12023): Found entity 1: oneBitComparator
+Info (12021): Found 2 design units, including 1 entities, in source file eightbitrippleadder.vhd
+    Info (12022): Found design unit 1: EightBitRippleAdder-rtl
+    Info (12023): Found entity 1: EightBitRippleAdder
+Info (12021): Found 2 design units, including 1 entities, in source file fulladder.vhd
+    Info (12022): Found design unit 1: FullAdder-rtl
+    Info (12023): Found entity 1: FullAdder
+Info (12021): Found 2 design units, including 1 entities, in source file halfadder.vhd
+    Info (12022): Found design unit 1: HalfAdder-rtl
+    Info (12023): Found entity 1: HalfAdder
+Info (12021): Found 2 design units, including 1 entities, in source file ninebitaddersubtractor.vhd
+    Info (12022): Found design unit 1: NineBitAdderSubtractor-rtl
+    Info (12023): Found entity 1: NineBitAdderSubtractor
+Info (12021): Found 2 design units, including 1 entities, in source file adderdatapath.vhd
+    Info (12022): Found design unit 1: AdderDataPath-rtl
+    Info (12023): Found entity 1: AdderDataPath
+Info (12021): Found 2 design units, including 1 entities, in source file addercontrolunit.vhd
+    Info (12022): Found design unit 1: AdderControlUnit-rtl
+    Info (12023): Found entity 1: AdderControlUnit
+Info (12021): Found 2 design units, including 1 entities, in source file eightbitgpregister.vhd
+    Info (12022): Found design unit 1: EightBitGPRegister-structural
+    Info (12023): Found entity 1: EightBitGPRegister
+Info (12021): Found 2 design units, including 1 entities, in source file floatingpointadder.vhd
+    Info (12022): Found design unit 1: FloatingPointAdder-rtl
+    Info (12023): Found entity 1: FloatingPointAdder
+Info (12021): Found 2 design units, including 1 entities, in source file enardff_2.vhd
+    Info (12022): Found design unit 1: enARdFF_2-rtl
+    Info (12023): Found entity 1: enARdFF_2
+Info (12021): Found 2 design units, including 1 entities, in source file eighttoonemux.vhd
+    Info (12022): Found design unit 1: EightToOneMux-rtl
+    Info (12023): Found entity 1: EightToOneMux
+Info (12021): Found 2 design units, including 1 entities, in source file dflipflop.vhd
+    Info (12022): Found design unit 1: dflipflop-rtl
+    Info (12023): Found entity 1: dflipflop
+Info (12021): Found 2 design units, including 1 entities, in source file ninebitrippleadder.vhd
+    Info (12022): Found design unit 1: NineBitRippleAdder-rtl
+    Info (12023): Found entity 1: NineBitRippleAdder
+Info (12021): Found 2 design units, including 1 entities, in source file ninebitgpregister.vhd
+    Info (12022): Found design unit 1: NineBitGPRegister-structural
+    Info (12023): Found entity 1: NineBitGPRegister
+Info (12021): Found 2 design units, including 1 entities, in source file twotoone8bitmux.vhd
+    Info (12022): Found design unit 1: TwoToOne8BitMux-rtl
+    Info (12023): Found entity 1: TwoToOne8BitMux
+Info (12021): Found 2 design units, including 1 entities, in source file mux_2to1_top.vhd
+    Info (12022): Found design unit 1: mux_2to1_top-rtl
+    Info (12023): Found entity 1: mux_2to1_top
+Info (12021): Found 2 design units, including 1 entities, in source file eightbitaddersubtractor.vhd
+    Info (12022): Found design unit 1: EightBitAdderSubtractor-rtl
+    Info (12023): Found entity 1: EightBitAdderSubtractor
+Info (12021): Found 2 design units, including 1 entities, in source file eighttothreeencoder.vhd
+    Info (12022): Found design unit 1: EightToThreeEncoder-rtl
+    Info (12023): Found entity 1: EightToThreeEncoder
+Info (12021): Found 2 design units, including 1 entities, in source file multiplierdatapath.vhd
+    Info (12022): Found design unit 1: MultiplierDataPath-rtl
+    Info (12023): Found entity 1: MultiplierDataPath
+Info (12021): Found 2 design units, including 1 entities, in source file multipliercontrolunit.vhd
+    Info (12022): Found design unit 1: MultiplierControlUnit-rtl
+    Info (12023): Found entity 1: MultiplierControlUnit
+Info (12021): Found 2 design units, including 1 entities, in source file floatingpointmultiplier.vhd
+    Info (12022): Found design unit 1: FloatingPointMultiplier-rtl
+    Info (12023): Found entity 1: FloatingPointMultiplier
+Info (12127): Elaborating entity "FloatingPointMultiplier" for the top level hierarchy
+Info (12128): Elaborating entity "MultiplierDataPath" for hierarchy "MultiplierDataPath:dp"
+Info (12128): Elaborating entity "EightBitAdderSubtractor" for hierarchy "MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder"
+Info (12128): Elaborating entity "EightBitRippleAdder" for hierarchy "MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA"
+Info (12128): Elaborating entity "FullAdder" for hierarchy "MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA0"
+Info (12128): Elaborating entity "HalfAdder" for hierarchy "MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA0|HalfAdder:ha_high"
+Info (12128): Elaborating entity "EightBitGPRegister" for hierarchy "MultiplierDataPath:dp|EightBitGPRegister:productExponent"
+Info (12128): Elaborating entity "EightToThreeEncoder" for hierarchy "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToThreeEncoder:op_encoder"
+Info (12128): Elaborating entity "EightToOneMux" for hierarchy "MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:0:mux_inst"
+Info (12128): Elaborating entity "enARdFF_2" for hierarchy "MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:0:dff_inst"
+Info (12128): Elaborating entity "EightBitComparator" for hierarchy "MultiplierDataPath:dp|EightBitComparator:exponentComparator"
+Warning (10540): VHDL Signal Declaration warning at EightBitComparator.vhd(22): used explicit default value for signal "gnd" because signal was never assigned a value
+Info (12128): Elaborating entity "oneBitComparator" for hierarchy "MultiplierDataPath:dp|EightBitComparator:exponentComparator|oneBitComparator:comp7"
+Info (12128): Elaborating entity "NineBitGPRegister" for hierarchy "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister"
+Info (12128): Elaborating entity "NineBitAdderSubtractor" for hierarchy "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC"
+Info (12128): Elaborating entity "NineBitRippleAdder" for hierarchy "MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA"
+Info (12128): Elaborating entity "MultiplierControlUnit" for hierarchy "MultiplierControlUnit:cp"
+Info (12128): Elaborating entity "dflipflop" for hierarchy "MultiplierControlUnit:cp|dflipflop:s0"
+Info (278001): Inferred 1 megafunctions from design logic
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "MultiplierDataPath:dp|Mult0"
+Info (12130): Elaborated megafunction instantiation "MultiplierDataPath:dp|lpm_mult:Mult0"
+Info (12133): Instantiated megafunction "MultiplierDataPath:dp|lpm_mult:Mult0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHA" = "9"
+    Info (12134): Parameter "LPM_WIDTHB" = "9"
+    Info (12134): Parameter "LPM_WIDTHP" = "18"
+    Info (12134): Parameter "LPM_WIDTHR" = "18"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_eat.tdf
+    Info (12023): Found entity 1: mult_eat
+Info (13000): Registers with preset signals will power-up high
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 125 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 34 input pins
+    Info (21059): Implemented 17 output pins
+    Info (21061): Implemented 73 logic cells
+    Info (21062): Implemented 1 DSP elements
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 2 warnings
+    Info: Peak virtual memory: 4660 megabytes
+    Info: Processing ended: Wed Feb 11 03:15:37 2026
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:05
+
+

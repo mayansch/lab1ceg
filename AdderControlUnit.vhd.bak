@@ -1,0 +1,148 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity AdderControlUnit is
+    port (
+        i_clock, i_reset : in std_logic;
+        i_downCounterEmpty, i_mantissaCarry, i_mantissaSumMSB : in std_logic;
+
+        o_loadA, o_loadB : out std_logic;
+        o_loadDownCounter, o_decrementDownCounter : out std_logic;
+        o_smallerMantissaLeftShift : out std_logic;
+
+        o_loadSumE, o_loadSumM, o_loadSumS : out std_logic;
+        o_rightShiftSum, o_incrementSumExponent : out std_logic;
+        o_leftShiftSum, o_decrementSumExponent : out std_logic;
+
+        o_s0, o_s1, o_s2, o_s3, o_s4, o_s5, o_s6 : out std_logic
+    );
+end AdderControlUnit;
+
+architecture rtl of AdderControlUnit is
+
+    component dflipflop is
+        port (
+            i_d : in std_logic;
+            i_clock : in std_logic;
+            i_enable : in std_logic;
+            i_async_reset : in std_logic;
+            i_async_set : in std_logic;
+            o_q, o_qBar : out std_logic
+        );
+    end component;
+
+    signal state_s0, state_s1, state_s2, state_s3, state_s4, state_s5, state_s6 : std_logic;
+    signal next_s2, next_s3, next_s4, next_s5, next_s6 : std_logic;
+
+begin
+
+    next_s2 <= ((state_s1 or state_s2) and (not i_downCounterEmpty));
+    next_s3 <= ((state_s1 or state_s2) and i_downCounterEmpty);
+    next_s4 <= (state_s3 and i_mantissaCarry);
+    next_s5 <= ((state_s3 or state_s5) and (not i_mantissaSumMSB) and (not i_mantissaCarry));
+    next_s6 <= (state_s4 or state_s6 or (state_s5 and i_mantissaSumMSB) or (state_s3 and i_mantissaSumMSB and (not i_mantissaCarry)));
+
+    s0 : dflipflop
+        port map (
+            i_d => i_reset,
+            i_clock => i_clock,
+            i_enable => '1',
+            i_async_reset => '0',
+            i_async_set => i_reset,
+            o_q => state_s0,
+            o_qBar => open
+        );
+
+    s1 : dflipflop
+        port map (
+            i_d => state_s0,
+            i_clock => i_clock,
+            i_enable => '1',
+            i_async_reset => i_reset,
+            i_async_set => '0',
+            o_q => state_s1,
+            o_qBar => open
+        );
+
+    s2 : dflipflop
+        port map (
+            i_d => next_s2,
+            i_clock => i_clock,
+            i_enable => '1',
+            i_async_reset => i_reset,
+            i_async_set => '0',
+            o_q => state_s2,
+            o_qBar => open
+        );
+
+    s3 : dflipflop
+        port map (
+            i_d => next_s3,
+            i_clock => i_clock,
+            i_enable => '1',
+            i_async_reset => i_reset,
+            i_async_set => '0',
+            o_q => state_s3,
+            o_qBar => open
+        );
+
+    s4 : dflipflop
+        port map (
+            i_d => next_s4,
+            i_clock => i_clock,
+            i_enable => '1',
+            i_async_reset => i_reset,
+            i_async_set => '0',
+            o_q => state_s4,
+            o_qBar => open
+        );
+
+    s5 : dflipflop
+        port map (
+            i_d => next_s5,
+            i_clock => i_clock,
+            i_enable => '1',
+            i_async_reset => i_reset,
+            i_async_set => '0',
+            o_q => state_s5,
+            o_qBar => open
+        );
+
+    s6 : dflipflop
+        port map (
+            i_d => next_s6,
+            i_clock => i_clock,
+            i_enable => '1',
+            i_async_reset => i_reset,
+            i_async_set => '0',
+            o_q => state_s6,
+            o_qBar => open
+        );
+
+    o_loadA <= state_s0;
+    o_loadB <= state_s0;
+
+    o_loadDownCounter <= state_s1;
+
+    o_decrementDownCounter <= state_s2;
+    o_smallerMantissaLeftShift <= state_s2;
+
+    o_loadSumE <= state_s3;
+    o_loadSumM <= state_s3;
+    o_loadSumS <= state_s3;
+
+    o_rightShiftSum <= state_s4;
+    o_incrementSumExponent <= state_s4;
+
+    o_leftShiftSum <= state_s5;
+    o_decrementSumExponent <= state_s5;
+
+    o_s0 <= state_s0;
+    o_s1 <= state_s1;
+    o_s2 <= state_s2;
+    o_s3 <= state_s3;
+    o_s4 <= state_s4;
+    o_s5 <= state_s5;
+    o_s6 <= state_s6;
+
+end architecture;

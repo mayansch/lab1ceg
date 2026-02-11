@@ -1,0 +1,156 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity EightBitGPRegister is
+    port (
+        i_resetBar : in std_logic;
+        i_load, i_shiftLeft, i_shiftRight : in std_logic;
+        i_decrement, i_increment : in std_logic;
+
+        i_serial_in_left, i_serial_in_right : in std_logic;
+        i_clock : in std_logic;
+        i_Value : in std_logic_vector(7 downto 0);
+        o_Value : out std_logic_vector(7 downto 0)
+    );
+end EightBitGPRegister;
+
+architecture structural of EightBitGPRegister is
+
+    component enARdFF_2 is
+        port (
+            i_d : in std_logic;
+            i_clock : in std_logic;
+            i_enable : in std_logic;
+            i_resetBar : in std_logic;
+            o_q, o_qBar : out std_logic
+        );
+    end component;
+
+    component EightToOneMux is
+        port (
+            i_mux : in std_logic_vector(7 downto 0);
+            o_mux : out std_logic;
+            sel0, sel1, sel2 : in std_logic
+        );
+    end component;
+
+    component EigthToThreeEncoder is
+        port (
+            inputs  : in  std_logic_vector(7 downto 0);
+            outputs : out std_logic_vector(2 downto 0)
+        );
+    end component;
+
+    component EightBitAdderSubtractor is
+        port (
+            InputA, InputB : in  std_logic_vector(7 downto 0);
+            Operation      : in  std_logic;
+            Result         : out std_logic_vector(7 downto 0);
+            CarryOUT       : out std_logic
+        );
+    end component;
+
+    type slv8_array is array (0 to 7) of std_logic_vector(7 downto 0);
+
+    signal reg_q      : std_logic_vector(7 downto 0);
+    signal reg_d      : std_logic_vector(7 downto 0);
+    signal reg_en     : std_logic;
+
+    signal op_vec     : std_logic_vector(7 downto 0);
+    signal sel        : std_logic_vector(2 downto 0);
+
+    signal inc_res    : std_logic_vector(7 downto 0);
+    signal dec_res    : std_logic_vector(7 downto 0);
+
+    signal mux_bus    : slv8_array;
+
+begin
+
+    reg_en <= i_load or i_shiftLeft or i_shiftRight or i_increment or i_decrement;
+
+    op_vec <= (5 => i_decrement,
+               4 => i_increment,
+               3 => i_shiftRight,
+               2 => i_shiftLeft,
+               1 => i_load,
+               others => '0');
+
+    op_encode : EigthToThreeEncoder
+        port map (
+            inputs  => op_vec,
+            outputs => sel
+        );
+
+    inc_unit : EightBitAdderSubtractor
+        port map (
+            InputA    => reg_q,
+            InputB    => "00000001",
+            Operation => '0',
+            Result    => inc_res,
+            CarryOUT  => open
+        );
+
+    dec_unit : EightBitAdderSubtractor
+        port map (
+            InputA    => reg_q,
+            InputB    => "00000001",
+            Operation => '1',
+            Result    => dec_res,
+            CarryOUT  => open
+        );
+
+    build_mux_inputs : process(all)
+        variable tmp : slv8_array;
+    begin
+        for i in 0 to 7 loop
+            tmp(i) := (others => '1');
+
+            tmp(i)(0) := reg_q(i);        -- hold
+            tmp(i)(1) := i_Value(i);      -- load
+            tmp(i)(4) := inc_res(i);      -- increment
+            tmp(i)(5) := dec_res(i);      -- decrement
+
+            -- shift-right source (toward LSB)
+            if i = 0 then
+                tmp(i)(2) := i_serial_in_right;
+            else
+                tmp(i)(2) := reg_q(i-1);
+            end if;
+
+            -- shift-left source (toward MSB)
+            if i = 7 then
+                tmp(i)(3) := i_serial_in_left;
+            else
+                tmp(i)(3) := reg_q(i+1);
+            end if;
+        end loop;
+
+        mux_bus <= tmp;
+    end process;
+
+    gen_bits : for i in 0 to 7 generate
+
+        mux_i : EightToOneMux
+            port map (
+                i_mux => mux_bus(i),
+                o_mux => reg_d(i),
+                sel0  => sel(0),
+                sel1  => sel(1),
+                sel2  => sel(2)
+            );
+
+        ff_i : enARdFF_2
+            port map (
+                i_d       => reg_d(i),
+                i_clock   => i_clock,
+                i_enable  => reg_en,
+                i_resetBar=> i_resetBar,
+                o_q       => reg_q(i),
+                o_qBar    => open
+            );
+
+    end generate;
+
+    o_Value <= reg_q;
+
+end structural;

@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="Adder_qsim">
+		<CBX_INST_ENTRY INSTANCE_NAME="|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:1:mux_inst|lpm_mux:Mux0" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:5:mux_inst|lpm_mux:Mux0" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX0|lpm_mux:Mux0" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX4|lpm_mux:Mux0" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:2:mux_inst|lpm_mux:Mux0" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:6:mux_inst|lpm_mux:Mux0" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX1|lpm_mux:Mux0" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX5|lpm_mux:Mux0" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:3:mux_inst|lpm_mux:Mux0" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:7:mux_inst|lpm_mux:Mux0" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX2|lpm_mux:Mux0" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX6|lpm_mux:Mux0" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:0:mux_inst|lpm_mux:Mux0" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:4:mux_inst|lpm_mux:Mux0" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX3|lpm_mux:Mux0" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX7|lpm_mux:Mux0" CBX_FILE_NAME="mux_cqc.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

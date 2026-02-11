@@ -1,0 +1,3508 @@
+|FloatingPointMultiplier
+i_clock => MultiplierDataPath:dp.GClock
+i_clock => MultiplierControlUnit:cp.i_clock
+i_reset => MultiplierDataPath:dp.GReset
+i_reset => MultiplierControlUnit:cp.i_reset
+i_signA => MultiplierDataPath:dp.SignA
+i_signB => MultiplierDataPath:dp.SignB
+i_mantissaA[0] => MultiplierDataPath:dp.MantissaA[0]
+i_mantissaA[1] => MultiplierDataPath:dp.MantissaA[1]
+i_mantissaA[2] => MultiplierDataPath:dp.MantissaA[2]
+i_mantissaA[3] => MultiplierDataPath:dp.MantissaA[3]
+i_mantissaA[4] => MultiplierDataPath:dp.MantissaA[4]
+i_mantissaA[5] => MultiplierDataPath:dp.MantissaA[5]
+i_mantissaA[6] => MultiplierDataPath:dp.MantissaA[6]
+i_mantissaA[7] => MultiplierDataPath:dp.MantissaA[7]
+i_mantissaB[0] => MultiplierDataPath:dp.MantissaB[0]
+i_mantissaB[1] => MultiplierDataPath:dp.MantissaB[1]
+i_mantissaB[2] => MultiplierDataPath:dp.MantissaB[2]
+i_mantissaB[3] => MultiplierDataPath:dp.MantissaB[3]
+i_mantissaB[4] => MultiplierDataPath:dp.MantissaB[4]
+i_mantissaB[5] => MultiplierDataPath:dp.MantissaB[5]
+i_mantissaB[6] => MultiplierDataPath:dp.MantissaB[6]
+i_mantissaB[7] => MultiplierDataPath:dp.MantissaB[7]
+i_exponentA[0] => MultiplierDataPath:dp.ExponentA[0]
+i_exponentA[1] => MultiplierDataPath:dp.ExponentA[1]
+i_exponentA[2] => MultiplierDataPath:dp.ExponentA[2]
+i_exponentA[3] => MultiplierDataPath:dp.ExponentA[3]
+i_exponentA[4] => MultiplierDataPath:dp.ExponentA[4]
+i_exponentA[5] => MultiplierDataPath:dp.ExponentA[5]
+i_exponentA[6] => MultiplierDataPath:dp.ExponentA[6]
+i_exponentB[0] => MultiplierDataPath:dp.ExponentB[0]
+i_exponentB[1] => MultiplierDataPath:dp.ExponentB[1]
+i_exponentB[2] => MultiplierDataPath:dp.ExponentB[2]
+i_exponentB[3] => MultiplierDataPath:dp.ExponentB[3]
+i_exponentB[4] => MultiplierDataPath:dp.ExponentB[4]
+i_exponentB[5] => MultiplierDataPath:dp.ExponentB[5]
+i_exponentB[6] => MultiplierDataPath:dp.ExponentB[6]
+o_sign <= MultiplierDataPath:dp.SignOut
+o_overflow <= MultiplierDataPath:dp.Overflow
+o_mantissa[0] <= MultiplierDataPath:dp.MantissaOut[0]
+o_mantissa[1] <= MultiplierDataPath:dp.MantissaOut[1]
+o_mantissa[2] <= MultiplierDataPath:dp.MantissaOut[2]
+o_mantissa[3] <= MultiplierDataPath:dp.MantissaOut[3]
+o_mantissa[4] <= MultiplierDataPath:dp.MantissaOut[4]
+o_mantissa[5] <= MultiplierDataPath:dp.MantissaOut[5]
+o_mantissa[6] <= MultiplierDataPath:dp.MantissaOut[6]
+o_mantissa[7] <= MultiplierDataPath:dp.MantissaOut[7]
+o_exponent[0] <= MultiplierDataPath:dp.ExponentOut[0]
+o_exponent[1] <= MultiplierDataPath:dp.ExponentOut[1]
+o_exponent[2] <= MultiplierDataPath:dp.ExponentOut[2]
+o_exponent[3] <= MultiplierDataPath:dp.ExponentOut[3]
+o_exponent[4] <= MultiplierDataPath:dp.ExponentOut[4]
+o_exponent[5] <= MultiplierDataPath:dp.ExponentOut[5]
+o_exponent[6] <= MultiplierDataPath:dp.ExponentOut[6]
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp
+SignA => SignOut.IN0
+SignB => SignOut.IN1
+MantissaA[0] => NineBitGPRegister:mantissaARegister.i_Value[0]
+MantissaA[1] => NineBitGPRegister:mantissaARegister.i_Value[1]
+MantissaA[2] => NineBitGPRegister:mantissaARegister.i_Value[2]
+MantissaA[3] => NineBitGPRegister:mantissaARegister.i_Value[3]
+MantissaA[4] => NineBitGPRegister:mantissaARegister.i_Value[4]
+MantissaA[5] => NineBitGPRegister:mantissaARegister.i_Value[5]
+MantissaA[6] => NineBitGPRegister:mantissaARegister.i_Value[6]
+MantissaA[7] => NineBitGPRegister:mantissaARegister.i_Value[7]
+MantissaB[0] => NineBitGPRegister:mantissaBRegister.i_Value[0]
+MantissaB[1] => NineBitGPRegister:mantissaBRegister.i_Value[1]
+MantissaB[2] => NineBitGPRegister:mantissaBRegister.i_Value[2]
+MantissaB[3] => NineBitGPRegister:mantissaBRegister.i_Value[3]
+MantissaB[4] => NineBitGPRegister:mantissaBRegister.i_Value[4]
+MantissaB[5] => NineBitGPRegister:mantissaBRegister.i_Value[5]
+MantissaB[6] => NineBitGPRegister:mantissaBRegister.i_Value[6]
+MantissaB[7] => NineBitGPRegister:mantissaBRegister.i_Value[7]
+ExponentA[0] => EightBitAdderSubtractor:exponentAdder.InputA[0]
+ExponentA[1] => EightBitAdderSubtractor:exponentAdder.InputA[1]
+ExponentA[2] => EightBitAdderSubtractor:exponentAdder.InputA[2]
+ExponentA[3] => EightBitAdderSubtractor:exponentAdder.InputA[3]
+ExponentA[4] => EightBitAdderSubtractor:exponentAdder.InputA[4]
+ExponentA[5] => EightBitAdderSubtractor:exponentAdder.InputA[5]
+ExponentA[6] => EightBitAdderSubtractor:exponentAdder.InputA[6]
+ExponentB[0] => EightBitAdderSubtractor:exponentAdder.InputB[0]
+ExponentB[1] => EightBitAdderSubtractor:exponentAdder.InputB[1]
+ExponentB[2] => EightBitAdderSubtractor:exponentAdder.InputB[2]
+ExponentB[3] => EightBitAdderSubtractor:exponentAdder.InputB[3]
+ExponentB[4] => EightBitAdderSubtractor:exponentAdder.InputB[4]
+ExponentB[5] => EightBitAdderSubtractor:exponentAdder.InputB[5]
+ExponentB[6] => EightBitAdderSubtractor:exponentAdder.InputB[6]
+GClock => EightBitGPRegister:productExponent.i_clock
+GClock => NineBitGPRegister:mantissaARegister.i_clock
+GClock => NineBitGPRegister:mantissaBRegister.i_clock
+GReset => EightBitGPRegister:productExponent.i_resetBar
+GReset => NineBitGPRegister:mantissaARegister.i_resetBar
+GReset => NineBitGPRegister:mantissaBRegister.i_resetBar
+SignOut <= SignOut.DB_MAX_OUTPUT_PORT_TYPE
+MantissaOut[0] <= MantissaOut.DB_MAX_OUTPUT_PORT_TYPE
+MantissaOut[1] <= MantissaOut.DB_MAX_OUTPUT_PORT_TYPE
+MantissaOut[2] <= MantissaOut.DB_MAX_OUTPUT_PORT_TYPE
+MantissaOut[3] <= MantissaOut.DB_MAX_OUTPUT_PORT_TYPE
+MantissaOut[4] <= MantissaOut.DB_MAX_OUTPUT_PORT_TYPE
+MantissaOut[5] <= MantissaOut.DB_MAX_OUTPUT_PORT_TYPE
+MantissaOut[6] <= MantissaOut.DB_MAX_OUTPUT_PORT_TYPE
+MantissaOut[7] <= MantissaOut.DB_MAX_OUTPUT_PORT_TYPE
+ExponentOut[0] <= EightBitGPRegister:productExponent.o_Value[0]
+ExponentOut[1] <= EightBitGPRegister:productExponent.o_Value[1]
+ExponentOut[2] <= EightBitGPRegister:productExponent.o_Value[2]
+ExponentOut[3] <= EightBitGPRegister:productExponent.o_Value[3]
+ExponentOut[4] <= EightBitGPRegister:productExponent.o_Value[4]
+ExponentOut[5] <= EightBitGPRegister:productExponent.o_Value[5]
+ExponentOut[6] <= EightBitGPRegister:productExponent.o_Value[6]
+Overflow <= i_overflow.DB_MAX_OUTPUT_PORT_TYPE
+o_INCPM <= Mult0.DB_MAX_OUTPUT_PORT_TYPE
+o_EXPVLD <= EightBitComparator:exponentComparator.o_LT
+i_LDPE => EightBitGPRegister:productExponent.i_load
+i_LDAM => NineBitGPRegister:mantissaARegister.i_load
+i_LDBM => NineBitGPRegister:mantissaBRegister.i_load
+i_overflow => Overflow.DATAIN
+i_SHFTPM => ~NO_FANOUT~
+i_INCPE => EightBitGPRegister:productExponent.i_increment
+i_LDPM => MantissaOut.OUTPUTSELECT
+i_LDPM => MantissaOut.OUTPUTSELECT
+i_LDPM => MantissaOut.OUTPUTSELECT
+i_LDPM => MantissaOut.OUTPUTSELECT
+i_LDPM => MantissaOut.OUTPUTSELECT
+i_LDPM => MantissaOut.OUTPUTSELECT
+i_LDPM => MantissaOut.OUTPUTSELECT
+i_LDPM => MantissaOut.OUTPUTSELECT
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder
+InputA[0] => EightBitRippleAdder:RA.InputA[0]
+InputA[1] => EightBitRippleAdder:RA.InputA[1]
+InputA[2] => EightBitRippleAdder:RA.InputA[2]
+InputA[3] => EightBitRippleAdder:RA.InputA[3]
+InputA[4] => EightBitRippleAdder:RA.InputA[4]
+InputA[5] => EightBitRippleAdder:RA.InputA[5]
+InputA[6] => EightBitRippleAdder:RA.InputA[6]
+InputA[7] => EightBitRippleAdder:RA.InputA[7]
+InputB[0] => s_b_feed[0].IN0
+InputB[1] => s_b_feed[1].IN0
+InputB[2] => s_b_feed[2].IN0
+InputB[3] => s_b_feed[3].IN0
+InputB[4] => s_b_feed[4].IN0
+InputB[5] => s_b_feed[5].IN0
+InputB[6] => s_b_feed[6].IN0
+InputB[7] => s_b_feed[7].IN0
+Operation => EightBitRippleAdder:RA.CarryIN
+Operation => s_b_feed[7].IN1
+Operation => s_b_feed[6].IN1
+Operation => s_b_feed[5].IN1
+Operation => s_b_feed[4].IN1
+Operation => s_b_feed[3].IN1
+Operation => s_b_feed[2].IN1
+Operation => s_b_feed[1].IN1
+Operation => s_b_feed[0].IN1
+Result[0] <= EightBitRippleAdder:RA.Sum[0]
+Result[1] <= EightBitRippleAdder:RA.Sum[1]
+Result[2] <= EightBitRippleAdder:RA.Sum[2]
+Result[3] <= EightBitRippleAdder:RA.Sum[3]
+Result[4] <= EightBitRippleAdder:RA.Sum[4]
+Result[5] <= EightBitRippleAdder:RA.Sum[5]
+Result[6] <= EightBitRippleAdder:RA.Sum[6]
+Result[7] <= EightBitRippleAdder:RA.Sum[7]
+CarryOUT <= EightBitRippleAdder:RA.CarryOUT
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA
+InputA[0] => FullAdder:FA0.A
+InputA[1] => FullAdder:FA1.A
+InputA[2] => FullAdder:FA2.A
+InputA[3] => FullAdder:FA3.A
+InputA[4] => FullAdder:FA4.A
+InputA[5] => FullAdder:FA5.A
+InputA[6] => FullAdder:FA6.A
+InputA[7] => FullAdder:FA7.A
+InputB[0] => FullAdder:FA0.B
+InputB[1] => FullAdder:FA1.B
+InputB[2] => FullAdder:FA2.B
+InputB[3] => FullAdder:FA3.B
+InputB[4] => FullAdder:FA4.B
+InputB[5] => FullAdder:FA5.B
+InputB[6] => FullAdder:FA6.B
+InputB[7] => FullAdder:FA7.B
+CarryIN => FullAdder:FA0.Cin
+Sum[0] <= FullAdder:FA0.s
+Sum[1] <= FullAdder:FA1.s
+Sum[2] <= FullAdder:FA2.s
+Sum[3] <= FullAdder:FA3.s
+Sum[4] <= FullAdder:FA4.s
+Sum[5] <= FullAdder:FA5.s
+Sum[6] <= FullAdder:FA6.s
+Sum[7] <= FullAdder:FA7.s
+CarryOUT <= CarryOUT.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA0
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA0|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA0|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA1
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA1|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA1|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA2
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA2|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA2|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA3
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA3|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA3|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA4
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA4|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA4|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA5
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA5|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA5|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA6
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA6|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA6|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA7
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA7|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentAdder|EightBitRippleAdder:RA|FullAdder:FA7|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor
+InputA[0] => EightBitRippleAdder:RA.InputA[0]
+InputA[1] => EightBitRippleAdder:RA.InputA[1]
+InputA[2] => EightBitRippleAdder:RA.InputA[2]
+InputA[3] => EightBitRippleAdder:RA.InputA[3]
+InputA[4] => EightBitRippleAdder:RA.InputA[4]
+InputA[5] => EightBitRippleAdder:RA.InputA[5]
+InputA[6] => EightBitRippleAdder:RA.InputA[6]
+InputA[7] => EightBitRippleAdder:RA.InputA[7]
+InputB[0] => s_b_feed[0].IN0
+InputB[1] => s_b_feed[1].IN0
+InputB[2] => s_b_feed[2].IN0
+InputB[3] => s_b_feed[3].IN0
+InputB[4] => s_b_feed[4].IN0
+InputB[5] => s_b_feed[5].IN0
+InputB[6] => s_b_feed[6].IN0
+InputB[7] => s_b_feed[7].IN0
+Operation => EightBitRippleAdder:RA.CarryIN
+Operation => s_b_feed[7].IN1
+Operation => s_b_feed[6].IN1
+Operation => s_b_feed[5].IN1
+Operation => s_b_feed[4].IN1
+Operation => s_b_feed[3].IN1
+Operation => s_b_feed[2].IN1
+Operation => s_b_feed[1].IN1
+Operation => s_b_feed[0].IN1
+Result[0] <= EightBitRippleAdder:RA.Sum[0]
+Result[1] <= EightBitRippleAdder:RA.Sum[1]
+Result[2] <= EightBitRippleAdder:RA.Sum[2]
+Result[3] <= EightBitRippleAdder:RA.Sum[3]
+Result[4] <= EightBitRippleAdder:RA.Sum[4]
+Result[5] <= EightBitRippleAdder:RA.Sum[5]
+Result[6] <= EightBitRippleAdder:RA.Sum[6]
+Result[7] <= EightBitRippleAdder:RA.Sum[7]
+CarryOUT <= EightBitRippleAdder:RA.CarryOUT
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA
+InputA[0] => FullAdder:FA0.A
+InputA[1] => FullAdder:FA1.A
+InputA[2] => FullAdder:FA2.A
+InputA[3] => FullAdder:FA3.A
+InputA[4] => FullAdder:FA4.A
+InputA[5] => FullAdder:FA5.A
+InputA[6] => FullAdder:FA6.A
+InputA[7] => FullAdder:FA7.A
+InputB[0] => FullAdder:FA0.B
+InputB[1] => FullAdder:FA1.B
+InputB[2] => FullAdder:FA2.B
+InputB[3] => FullAdder:FA3.B
+InputB[4] => FullAdder:FA4.B
+InputB[5] => FullAdder:FA5.B
+InputB[6] => FullAdder:FA6.B
+InputB[7] => FullAdder:FA7.B
+CarryIN => FullAdder:FA0.Cin
+Sum[0] <= FullAdder:FA0.s
+Sum[1] <= FullAdder:FA1.s
+Sum[2] <= FullAdder:FA2.s
+Sum[3] <= FullAdder:FA3.s
+Sum[4] <= FullAdder:FA4.s
+Sum[5] <= FullAdder:FA5.s
+Sum[6] <= FullAdder:FA6.s
+Sum[7] <= FullAdder:FA7.s
+CarryOUT <= CarryOUT.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA0
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA0|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA0|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA1
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA1|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA1|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA2
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA2|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA2|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA3
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA3|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA3|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA4
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA4|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA4|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA5
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA5|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA5|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA6
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA6|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA6|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA7
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA7|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitAdderSubtractor:exponentSubtractor|EightBitRippleAdder:RA|FullAdder:FA7|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent
+i_resetBar => enARdFF_2:gen_bits:0:dff_inst.i_resetBar
+i_resetBar => enARdFF_2:gen_bits:1:dff_inst.i_resetBar
+i_resetBar => enARdFF_2:gen_bits:2:dff_inst.i_resetBar
+i_resetBar => enARdFF_2:gen_bits:3:dff_inst.i_resetBar
+i_resetBar => enARdFF_2:gen_bits:4:dff_inst.i_resetBar
+i_resetBar => enARdFF_2:gen_bits:5:dff_inst.i_resetBar
+i_resetBar => enARdFF_2:gen_bits:6:dff_inst.i_resetBar
+i_resetBar => enARdFF_2:gen_bits:7:dff_inst.i_resetBar
+i_load => enable_reg.IN0
+i_load => EightToThreeEncoder:op_encoder.inputs[1]
+i_shiftLeft => enable_reg.IN1
+i_shiftLeft => EightToThreeEncoder:op_encoder.inputs[2]
+i_shiftRight => enable_reg.IN1
+i_shiftRight => EightToThreeEncoder:op_encoder.inputs[3]
+i_decrement => enable_reg.IN1
+i_decrement => EightToThreeEncoder:op_encoder.inputs[5]
+i_increment => enable_reg.IN1
+i_increment => EightToThreeEncoder:op_encoder.inputs[4]
+i_serial_in_left => EightToOneMux:gen_bits:7:mux_inst.i_mux[3]
+i_serial_in_right => EightToOneMux:gen_bits:0:mux_inst.i_mux[2]
+i_clock => enARdFF_2:gen_bits:0:dff_inst.i_clock
+i_clock => enARdFF_2:gen_bits:1:dff_inst.i_clock
+i_clock => enARdFF_2:gen_bits:2:dff_inst.i_clock
+i_clock => enARdFF_2:gen_bits:3:dff_inst.i_clock
+i_clock => enARdFF_2:gen_bits:4:dff_inst.i_clock
+i_clock => enARdFF_2:gen_bits:5:dff_inst.i_clock
+i_clock => enARdFF_2:gen_bits:6:dff_inst.i_clock
+i_clock => enARdFF_2:gen_bits:7:dff_inst.i_clock
+i_Value[0] => EightToOneMux:gen_bits:0:mux_inst.i_mux[1]
+i_Value[1] => EightToOneMux:gen_bits:1:mux_inst.i_mux[1]
+i_Value[2] => EightToOneMux:gen_bits:2:mux_inst.i_mux[1]
+i_Value[3] => EightToOneMux:gen_bits:3:mux_inst.i_mux[1]
+i_Value[4] => EightToOneMux:gen_bits:4:mux_inst.i_mux[1]
+i_Value[5] => EightToOneMux:gen_bits:5:mux_inst.i_mux[1]
+i_Value[6] => EightToOneMux:gen_bits:6:mux_inst.i_mux[1]
+i_Value[7] => EightToOneMux:gen_bits:7:mux_inst.i_mux[1]
+o_Value[0] <= enARdFF_2:gen_bits:0:dff_inst.o_q
+o_Value[1] <= enARdFF_2:gen_bits:1:dff_inst.o_q
+o_Value[2] <= enARdFF_2:gen_bits:2:dff_inst.o_q
+o_Value[3] <= enARdFF_2:gen_bits:3:dff_inst.o_q
+o_Value[4] <= enARdFF_2:gen_bits:4:dff_inst.o_q
+o_Value[5] <= enARdFF_2:gen_bits:5:dff_inst.o_q
+o_Value[6] <= enARdFF_2:gen_bits:6:dff_inst.o_q
+o_Value[7] <= enARdFF_2:gen_bits:7:dff_inst.o_q
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder
+InputA[0] => EightBitRippleAdder:RA.InputA[0]
+InputA[1] => EightBitRippleAdder:RA.InputA[1]
+InputA[2] => EightBitRippleAdder:RA.InputA[2]
+InputA[3] => EightBitRippleAdder:RA.InputA[3]
+InputA[4] => EightBitRippleAdder:RA.InputA[4]
+InputA[5] => EightBitRippleAdder:RA.InputA[5]
+InputA[6] => EightBitRippleAdder:RA.InputA[6]
+InputA[7] => EightBitRippleAdder:RA.InputA[7]
+InputB[0] => s_b_feed[0].IN0
+InputB[1] => s_b_feed[1].IN0
+InputB[2] => s_b_feed[2].IN0
+InputB[3] => s_b_feed[3].IN0
+InputB[4] => s_b_feed[4].IN0
+InputB[5] => s_b_feed[5].IN0
+InputB[6] => s_b_feed[6].IN0
+InputB[7] => s_b_feed[7].IN0
+Operation => EightBitRippleAdder:RA.CarryIN
+Operation => s_b_feed[7].IN1
+Operation => s_b_feed[6].IN1
+Operation => s_b_feed[5].IN1
+Operation => s_b_feed[4].IN1
+Operation => s_b_feed[3].IN1
+Operation => s_b_feed[2].IN1
+Operation => s_b_feed[1].IN1
+Operation => s_b_feed[0].IN1
+Result[0] <= EightBitRippleAdder:RA.Sum[0]
+Result[1] <= EightBitRippleAdder:RA.Sum[1]
+Result[2] <= EightBitRippleAdder:RA.Sum[2]
+Result[3] <= EightBitRippleAdder:RA.Sum[3]
+Result[4] <= EightBitRippleAdder:RA.Sum[4]
+Result[5] <= EightBitRippleAdder:RA.Sum[5]
+Result[6] <= EightBitRippleAdder:RA.Sum[6]
+Result[7] <= EightBitRippleAdder:RA.Sum[7]
+CarryOUT <= EightBitRippleAdder:RA.CarryOUT
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA
+InputA[0] => FullAdder:FA0.A
+InputA[1] => FullAdder:FA1.A
+InputA[2] => FullAdder:FA2.A
+InputA[3] => FullAdder:FA3.A
+InputA[4] => FullAdder:FA4.A
+InputA[5] => FullAdder:FA5.A
+InputA[6] => FullAdder:FA6.A
+InputA[7] => FullAdder:FA7.A
+InputB[0] => FullAdder:FA0.B
+InputB[1] => FullAdder:FA1.B
+InputB[2] => FullAdder:FA2.B
+InputB[3] => FullAdder:FA3.B
+InputB[4] => FullAdder:FA4.B
+InputB[5] => FullAdder:FA5.B
+InputB[6] => FullAdder:FA6.B
+InputB[7] => FullAdder:FA7.B
+CarryIN => FullAdder:FA0.Cin
+Sum[0] <= FullAdder:FA0.s
+Sum[1] <= FullAdder:FA1.s
+Sum[2] <= FullAdder:FA2.s
+Sum[3] <= FullAdder:FA3.s
+Sum[4] <= FullAdder:FA4.s
+Sum[5] <= FullAdder:FA5.s
+Sum[6] <= FullAdder:FA6.s
+Sum[7] <= FullAdder:FA7.s
+CarryOUT <= CarryOUT.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA0
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA0|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA0|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA1
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA1|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA1|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA2
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA2|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA2|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA3
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA3|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA3|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA4
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA4|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA4|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA5
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA5|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA5|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA6
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA6|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA6|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA7
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA7|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:inc_adder|EightBitRippleAdder:RA|FullAdder:FA7|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder
+InputA[0] => EightBitRippleAdder:RA.InputA[0]
+InputA[1] => EightBitRippleAdder:RA.InputA[1]
+InputA[2] => EightBitRippleAdder:RA.InputA[2]
+InputA[3] => EightBitRippleAdder:RA.InputA[3]
+InputA[4] => EightBitRippleAdder:RA.InputA[4]
+InputA[5] => EightBitRippleAdder:RA.InputA[5]
+InputA[6] => EightBitRippleAdder:RA.InputA[6]
+InputA[7] => EightBitRippleAdder:RA.InputA[7]
+InputB[0] => s_b_feed[0].IN0
+InputB[1] => s_b_feed[1].IN0
+InputB[2] => s_b_feed[2].IN0
+InputB[3] => s_b_feed[3].IN0
+InputB[4] => s_b_feed[4].IN0
+InputB[5] => s_b_feed[5].IN0
+InputB[6] => s_b_feed[6].IN0
+InputB[7] => s_b_feed[7].IN0
+Operation => EightBitRippleAdder:RA.CarryIN
+Operation => s_b_feed[7].IN1
+Operation => s_b_feed[6].IN1
+Operation => s_b_feed[5].IN1
+Operation => s_b_feed[4].IN1
+Operation => s_b_feed[3].IN1
+Operation => s_b_feed[2].IN1
+Operation => s_b_feed[1].IN1
+Operation => s_b_feed[0].IN1
+Result[0] <= EightBitRippleAdder:RA.Sum[0]
+Result[1] <= EightBitRippleAdder:RA.Sum[1]
+Result[2] <= EightBitRippleAdder:RA.Sum[2]
+Result[3] <= EightBitRippleAdder:RA.Sum[3]
+Result[4] <= EightBitRippleAdder:RA.Sum[4]
+Result[5] <= EightBitRippleAdder:RA.Sum[5]
+Result[6] <= EightBitRippleAdder:RA.Sum[6]
+Result[7] <= EightBitRippleAdder:RA.Sum[7]
+CarryOUT <= EightBitRippleAdder:RA.CarryOUT
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA
+InputA[0] => FullAdder:FA0.A
+InputA[1] => FullAdder:FA1.A
+InputA[2] => FullAdder:FA2.A
+InputA[3] => FullAdder:FA3.A
+InputA[4] => FullAdder:FA4.A
+InputA[5] => FullAdder:FA5.A
+InputA[6] => FullAdder:FA6.A
+InputA[7] => FullAdder:FA7.A
+InputB[0] => FullAdder:FA0.B
+InputB[1] => FullAdder:FA1.B
+InputB[2] => FullAdder:FA2.B
+InputB[3] => FullAdder:FA3.B
+InputB[4] => FullAdder:FA4.B
+InputB[5] => FullAdder:FA5.B
+InputB[6] => FullAdder:FA6.B
+InputB[7] => FullAdder:FA7.B
+CarryIN => FullAdder:FA0.Cin
+Sum[0] <= FullAdder:FA0.s
+Sum[1] <= FullAdder:FA1.s
+Sum[2] <= FullAdder:FA2.s
+Sum[3] <= FullAdder:FA3.s
+Sum[4] <= FullAdder:FA4.s
+Sum[5] <= FullAdder:FA5.s
+Sum[6] <= FullAdder:FA6.s
+Sum[7] <= FullAdder:FA7.s
+CarryOUT <= CarryOUT.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA0
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA0|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA0|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA1
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA1|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA1|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA2
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA2|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA2|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA3
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA3|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA3|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA4
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA4|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA4|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA5
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA5|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA5|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA6
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA6|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA6|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA7
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA7|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightBitAdderSubtractor:dec_adder|EightBitRippleAdder:RA|FullAdder:FA7|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToThreeEncoder:op_encoder
+inputs[0] => ~NO_FANOUT~
+inputs[1] => outputs.IN1
+inputs[2] => outputs.IN1
+inputs[3] => outputs.IN1
+inputs[3] => outputs.IN1
+inputs[4] => outputs.IN1
+inputs[5] => outputs.IN1
+inputs[5] => outputs.IN0
+inputs[6] => outputs.IN0
+inputs[7] => outputs.IN1
+inputs[7] => outputs.IN1
+outputs[0] <= outputs.DB_MAX_OUTPUT_PORT_TYPE
+outputs[1] <= outputs.DB_MAX_OUTPUT_PORT_TYPE
+outputs[2] <= outputs.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:0:mux_inst
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:0:dff_inst
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:1:mux_inst
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:1:dff_inst
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:2:mux_inst
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:2:dff_inst
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:3:mux_inst
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:3:dff_inst
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:4:mux_inst
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:4:dff_inst
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:5:mux_inst
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:5:dff_inst
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:6:mux_inst
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:6:dff_inst
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|EightToOneMux:\gen_bits:7:mux_inst
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitGPRegister:productExponent|enARdFF_2:\gen_bits:7:dff_inst
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitComparator:exponentComparator
+i_Ai[0] => oneBitComparator:comp0.i_Ai
+i_Ai[1] => oneBitComparator:comp1.i_Ai
+i_Ai[2] => oneBitComparator:comp2.i_Ai
+i_Ai[3] => oneBitComparator:comp3.i_Ai
+i_Ai[4] => oneBitComparator:comp4.i_Ai
+i_Ai[5] => oneBitComparator:comp5.i_Ai
+i_Ai[6] => oneBitComparator:comp6.i_Ai
+i_Ai[7] => oneBitComparator:comp7.i_Ai
+i_Bi[0] => oneBitComparator:comp0.i_Bi
+i_Bi[1] => oneBitComparator:comp1.i_Bi
+i_Bi[2] => oneBitComparator:comp2.i_Bi
+i_Bi[3] => oneBitComparator:comp3.i_Bi
+i_Bi[4] => oneBitComparator:comp4.i_Bi
+i_Bi[5] => oneBitComparator:comp5.i_Bi
+i_Bi[6] => oneBitComparator:comp6.i_Bi
+i_Bi[7] => oneBitComparator:comp7.i_Bi
+o_GT <= oneBitComparator:comp0.o_GT
+o_LT <= oneBitComparator:comp0.o_LT
+o_EQ <= o_EQ.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitComparator:exponentComparator|oneBitComparator:comp7
+i_GTPrevious => int_GT2.IN0
+i_GTPrevious => int_GT1.IN0
+i_GTPrevious => int_LT2.IN0
+i_LTPrevious => int_LT2.IN1
+i_LTPrevious => int_GT1.IN1
+i_LTPrevious => int_GT2.IN1
+i_Ai => int_GT1.IN1
+i_Ai => int_LT1.IN1
+i_Bi => int_LT1.IN1
+i_Bi => int_GT1.IN1
+o_GT <= int_GT.DB_MAX_OUTPUT_PORT_TYPE
+o_LT <= int_LT.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitComparator:exponentComparator|oneBitComparator:comp6
+i_GTPrevious => int_GT2.IN0
+i_GTPrevious => int_GT1.IN0
+i_GTPrevious => int_LT2.IN0
+i_LTPrevious => int_LT2.IN1
+i_LTPrevious => int_GT1.IN1
+i_LTPrevious => int_GT2.IN1
+i_Ai => int_GT1.IN1
+i_Ai => int_LT1.IN1
+i_Bi => int_LT1.IN1
+i_Bi => int_GT1.IN1
+o_GT <= int_GT.DB_MAX_OUTPUT_PORT_TYPE
+o_LT <= int_LT.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitComparator:exponentComparator|oneBitComparator:comp5
+i_GTPrevious => int_GT2.IN0
+i_GTPrevious => int_GT1.IN0
+i_GTPrevious => int_LT2.IN0
+i_LTPrevious => int_LT2.IN1
+i_LTPrevious => int_GT1.IN1
+i_LTPrevious => int_GT2.IN1
+i_Ai => int_GT1.IN1
+i_Ai => int_LT1.IN1
+i_Bi => int_LT1.IN1
+i_Bi => int_GT1.IN1
+o_GT <= int_GT.DB_MAX_OUTPUT_PORT_TYPE
+o_LT <= int_LT.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitComparator:exponentComparator|oneBitComparator:comp4
+i_GTPrevious => int_GT2.IN0
+i_GTPrevious => int_GT1.IN0
+i_GTPrevious => int_LT2.IN0
+i_LTPrevious => int_LT2.IN1
+i_LTPrevious => int_GT1.IN1
+i_LTPrevious => int_GT2.IN1
+i_Ai => int_GT1.IN1
+i_Ai => int_LT1.IN1
+i_Bi => int_LT1.IN1
+i_Bi => int_GT1.IN1
+o_GT <= int_GT.DB_MAX_OUTPUT_PORT_TYPE
+o_LT <= int_LT.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitComparator:exponentComparator|oneBitComparator:comp3
+i_GTPrevious => int_GT2.IN0
+i_GTPrevious => int_GT1.IN0
+i_GTPrevious => int_LT2.IN0
+i_LTPrevious => int_LT2.IN1
+i_LTPrevious => int_GT1.IN1
+i_LTPrevious => int_GT2.IN1
+i_Ai => int_GT1.IN1
+i_Ai => int_LT1.IN1
+i_Bi => int_LT1.IN1
+i_Bi => int_GT1.IN1
+o_GT <= int_GT.DB_MAX_OUTPUT_PORT_TYPE
+o_LT <= int_LT.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitComparator:exponentComparator|oneBitComparator:comp2
+i_GTPrevious => int_GT2.IN0
+i_GTPrevious => int_GT1.IN0
+i_GTPrevious => int_LT2.IN0
+i_LTPrevious => int_LT2.IN1
+i_LTPrevious => int_GT1.IN1
+i_LTPrevious => int_GT2.IN1
+i_Ai => int_GT1.IN1
+i_Ai => int_LT1.IN1
+i_Bi => int_LT1.IN1
+i_Bi => int_GT1.IN1
+o_GT <= int_GT.DB_MAX_OUTPUT_PORT_TYPE
+o_LT <= int_LT.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitComparator:exponentComparator|oneBitComparator:comp1
+i_GTPrevious => int_GT2.IN0
+i_GTPrevious => int_GT1.IN0
+i_GTPrevious => int_LT2.IN0
+i_LTPrevious => int_LT2.IN1
+i_LTPrevious => int_GT1.IN1
+i_LTPrevious => int_GT2.IN1
+i_Ai => int_GT1.IN1
+i_Ai => int_LT1.IN1
+i_Bi => int_LT1.IN1
+i_Bi => int_GT1.IN1
+o_GT <= int_GT.DB_MAX_OUTPUT_PORT_TYPE
+o_LT <= int_LT.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|EightBitComparator:exponentComparator|oneBitComparator:comp0
+i_GTPrevious => int_GT2.IN0
+i_GTPrevious => int_GT1.IN0
+i_GTPrevious => int_LT2.IN0
+i_LTPrevious => int_LT2.IN1
+i_LTPrevious => int_GT1.IN1
+i_LTPrevious => int_GT2.IN1
+i_Ai => int_GT1.IN1
+i_Ai => int_LT1.IN1
+i_Bi => int_LT1.IN1
+i_Bi => int_GT1.IN1
+o_GT <= int_GT.DB_MAX_OUTPUT_PORT_TYPE
+o_LT <= int_LT.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister
+i_resetBar => enARdFF_2:DFF0.i_resetBar
+i_resetBar => enARdFF_2:DFF1.i_resetBar
+i_resetBar => enARdFF_2:DFF2.i_resetBar
+i_resetBar => enARdFF_2:DFF3.i_resetBar
+i_resetBar => enARdFF_2:DFF4.i_resetBar
+i_resetBar => enARdFF_2:DFF5.i_resetBar
+i_resetBar => enARdFF_2:DFF6.i_resetBar
+i_resetBar => enARdFF_2:DFF7.i_resetBar
+i_resetBar => enARdFF_2:DFF8.i_resetBar
+i_load => enable_reg.IN0
+i_load => EightToThreeEncoder:ENC.inputs[1]
+i_shiftLeft => enable_reg.IN1
+i_shiftLeft => EightToThreeEncoder:ENC.inputs[2]
+i_shiftRight => enable_reg.IN1
+i_shiftRight => EightToThreeEncoder:ENC.inputs[3]
+i_decrement => enable_reg.IN1
+i_decrement => EightToThreeEncoder:ENC.inputs[5]
+i_increment => enable_reg.IN1
+i_increment => EightToThreeEncoder:ENC.inputs[4]
+i_serial_in_left => EightToOneMux:MUX8.i_mux[3]
+i_serial_in_right => EightToOneMux:MUX0.i_mux[2]
+i_clock => enARdFF_2:DFF0.i_clock
+i_clock => enARdFF_2:DFF1.i_clock
+i_clock => enARdFF_2:DFF2.i_clock
+i_clock => enARdFF_2:DFF3.i_clock
+i_clock => enARdFF_2:DFF4.i_clock
+i_clock => enARdFF_2:DFF5.i_clock
+i_clock => enARdFF_2:DFF6.i_clock
+i_clock => enARdFF_2:DFF7.i_clock
+i_clock => enARdFF_2:DFF8.i_clock
+i_Value[0] => EightToOneMux:MUX0.i_mux[1]
+i_Value[1] => EightToOneMux:MUX1.i_mux[1]
+i_Value[2] => EightToOneMux:MUX2.i_mux[1]
+i_Value[3] => EightToOneMux:MUX3.i_mux[1]
+i_Value[4] => EightToOneMux:MUX4.i_mux[1]
+i_Value[5] => EightToOneMux:MUX5.i_mux[1]
+i_Value[6] => EightToOneMux:MUX6.i_mux[1]
+i_Value[7] => EightToOneMux:MUX7.i_mux[1]
+i_Value[8] => EightToOneMux:MUX8.i_mux[1]
+o_Value[0] <= enARdFF_2:DFF0.o_q
+o_Value[1] <= enARdFF_2:DFF1.o_q
+o_Value[2] <= enARdFF_2:DFF2.o_q
+o_Value[3] <= enARdFF_2:DFF3.o_q
+o_Value[4] <= enARdFF_2:DFF4.o_q
+o_Value[5] <= enARdFF_2:DFF5.o_q
+o_Value[6] <= enARdFF_2:DFF6.o_q
+o_Value[7] <= enARdFF_2:DFF7.o_q
+o_Value[8] <= enARdFF_2:DFF8.o_q
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC
+InputA[0] => NineBitRippleAdder:RA.InputA[0]
+InputA[1] => NineBitRippleAdder:RA.InputA[1]
+InputA[2] => NineBitRippleAdder:RA.InputA[2]
+InputA[3] => NineBitRippleAdder:RA.InputA[3]
+InputA[4] => NineBitRippleAdder:RA.InputA[4]
+InputA[5] => NineBitRippleAdder:RA.InputA[5]
+InputA[6] => NineBitRippleAdder:RA.InputA[6]
+InputA[7] => NineBitRippleAdder:RA.InputA[7]
+InputA[8] => NineBitRippleAdder:RA.InputA[8]
+InputB[0] => s_b_feed[0].IN0
+InputB[1] => s_b_feed[1].IN0
+InputB[2] => s_b_feed[2].IN0
+InputB[3] => s_b_feed[3].IN0
+InputB[4] => s_b_feed[4].IN0
+InputB[5] => s_b_feed[5].IN0
+InputB[6] => s_b_feed[6].IN0
+InputB[7] => s_b_feed[7].IN0
+InputB[8] => s_b_feed[8].IN0
+Operation => NineBitRippleAdder:RA.CarryIN
+Operation => s_b_feed[8].IN1
+Operation => s_b_feed[7].IN1
+Operation => s_b_feed[6].IN1
+Operation => s_b_feed[5].IN1
+Operation => s_b_feed[4].IN1
+Operation => s_b_feed[3].IN1
+Operation => s_b_feed[2].IN1
+Operation => s_b_feed[1].IN1
+Operation => s_b_feed[0].IN1
+Result[0] <= NineBitRippleAdder:RA.Sum[0]
+Result[1] <= NineBitRippleAdder:RA.Sum[1]
+Result[2] <= NineBitRippleAdder:RA.Sum[2]
+Result[3] <= NineBitRippleAdder:RA.Sum[3]
+Result[4] <= NineBitRippleAdder:RA.Sum[4]
+Result[5] <= NineBitRippleAdder:RA.Sum[5]
+Result[6] <= NineBitRippleAdder:RA.Sum[6]
+Result[7] <= NineBitRippleAdder:RA.Sum[7]
+Result[8] <= NineBitRippleAdder:RA.Sum[8]
+CarryOUT <= NineBitRippleAdder:RA.CarryOUT
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA
+InputA[0] => FullAdder:gen_adders:0:fa_i.A
+InputA[1] => FullAdder:gen_adders:1:fa_i.A
+InputA[2] => FullAdder:gen_adders:2:fa_i.A
+InputA[3] => FullAdder:gen_adders:3:fa_i.A
+InputA[4] => FullAdder:gen_adders:4:fa_i.A
+InputA[5] => FullAdder:gen_adders:5:fa_i.A
+InputA[6] => FullAdder:gen_adders:6:fa_i.A
+InputA[7] => FullAdder:gen_adders:7:fa_i.A
+InputA[8] => FullAdder:gen_adders:8:fa_i.A
+InputB[0] => FullAdder:gen_adders:0:fa_i.B
+InputB[1] => FullAdder:gen_adders:1:fa_i.B
+InputB[2] => FullAdder:gen_adders:2:fa_i.B
+InputB[3] => FullAdder:gen_adders:3:fa_i.B
+InputB[4] => FullAdder:gen_adders:4:fa_i.B
+InputB[5] => FullAdder:gen_adders:5:fa_i.B
+InputB[6] => FullAdder:gen_adders:6:fa_i.B
+InputB[7] => FullAdder:gen_adders:7:fa_i.B
+InputB[8] => FullAdder:gen_adders:8:fa_i.B
+CarryIN => FullAdder:gen_adders:0:fa_i.Cin
+Sum[0] <= FullAdder:gen_adders:0:fa_i.s
+Sum[1] <= FullAdder:gen_adders:1:fa_i.s
+Sum[2] <= FullAdder:gen_adders:2:fa_i.s
+Sum[3] <= FullAdder:gen_adders:3:fa_i.s
+Sum[4] <= FullAdder:gen_adders:4:fa_i.s
+Sum[5] <= FullAdder:gen_adders:5:fa_i.s
+Sum[6] <= FullAdder:gen_adders:6:fa_i.s
+Sum[7] <= FullAdder:gen_adders:7:fa_i.s
+Sum[8] <= FullAdder:gen_adders:8:fa_i.s
+CarryOUT <= FullAdder:gen_adders:8:fa_i.Cout
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:0:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:0:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:0:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:1:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:1:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:1:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:2:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:2:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:2:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:3:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:3:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:3:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:4:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:4:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:4:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:5:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:5:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:5:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:6:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:6:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:6:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:7:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:7:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:7:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:8:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:8:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:8:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC
+InputA[0] => NineBitRippleAdder:RA.InputA[0]
+InputA[1] => NineBitRippleAdder:RA.InputA[1]
+InputA[2] => NineBitRippleAdder:RA.InputA[2]
+InputA[3] => NineBitRippleAdder:RA.InputA[3]
+InputA[4] => NineBitRippleAdder:RA.InputA[4]
+InputA[5] => NineBitRippleAdder:RA.InputA[5]
+InputA[6] => NineBitRippleAdder:RA.InputA[6]
+InputA[7] => NineBitRippleAdder:RA.InputA[7]
+InputA[8] => NineBitRippleAdder:RA.InputA[8]
+InputB[0] => s_b_feed[0].IN0
+InputB[1] => s_b_feed[1].IN0
+InputB[2] => s_b_feed[2].IN0
+InputB[3] => s_b_feed[3].IN0
+InputB[4] => s_b_feed[4].IN0
+InputB[5] => s_b_feed[5].IN0
+InputB[6] => s_b_feed[6].IN0
+InputB[7] => s_b_feed[7].IN0
+InputB[8] => s_b_feed[8].IN0
+Operation => NineBitRippleAdder:RA.CarryIN
+Operation => s_b_feed[8].IN1
+Operation => s_b_feed[7].IN1
+Operation => s_b_feed[6].IN1
+Operation => s_b_feed[5].IN1
+Operation => s_b_feed[4].IN1
+Operation => s_b_feed[3].IN1
+Operation => s_b_feed[2].IN1
+Operation => s_b_feed[1].IN1
+Operation => s_b_feed[0].IN1
+Result[0] <= NineBitRippleAdder:RA.Sum[0]
+Result[1] <= NineBitRippleAdder:RA.Sum[1]
+Result[2] <= NineBitRippleAdder:RA.Sum[2]
+Result[3] <= NineBitRippleAdder:RA.Sum[3]
+Result[4] <= NineBitRippleAdder:RA.Sum[4]
+Result[5] <= NineBitRippleAdder:RA.Sum[5]
+Result[6] <= NineBitRippleAdder:RA.Sum[6]
+Result[7] <= NineBitRippleAdder:RA.Sum[7]
+Result[8] <= NineBitRippleAdder:RA.Sum[8]
+CarryOUT <= NineBitRippleAdder:RA.CarryOUT
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA
+InputA[0] => FullAdder:gen_adders:0:fa_i.A
+InputA[1] => FullAdder:gen_adders:1:fa_i.A
+InputA[2] => FullAdder:gen_adders:2:fa_i.A
+InputA[3] => FullAdder:gen_adders:3:fa_i.A
+InputA[4] => FullAdder:gen_adders:4:fa_i.A
+InputA[5] => FullAdder:gen_adders:5:fa_i.A
+InputA[6] => FullAdder:gen_adders:6:fa_i.A
+InputA[7] => FullAdder:gen_adders:7:fa_i.A
+InputA[8] => FullAdder:gen_adders:8:fa_i.A
+InputB[0] => FullAdder:gen_adders:0:fa_i.B
+InputB[1] => FullAdder:gen_adders:1:fa_i.B
+InputB[2] => FullAdder:gen_adders:2:fa_i.B
+InputB[3] => FullAdder:gen_adders:3:fa_i.B
+InputB[4] => FullAdder:gen_adders:4:fa_i.B
+InputB[5] => FullAdder:gen_adders:5:fa_i.B
+InputB[6] => FullAdder:gen_adders:6:fa_i.B
+InputB[7] => FullAdder:gen_adders:7:fa_i.B
+InputB[8] => FullAdder:gen_adders:8:fa_i.B
+CarryIN => FullAdder:gen_adders:0:fa_i.Cin
+Sum[0] <= FullAdder:gen_adders:0:fa_i.s
+Sum[1] <= FullAdder:gen_adders:1:fa_i.s
+Sum[2] <= FullAdder:gen_adders:2:fa_i.s
+Sum[3] <= FullAdder:gen_adders:3:fa_i.s
+Sum[4] <= FullAdder:gen_adders:4:fa_i.s
+Sum[5] <= FullAdder:gen_adders:5:fa_i.s
+Sum[6] <= FullAdder:gen_adders:6:fa_i.s
+Sum[7] <= FullAdder:gen_adders:7:fa_i.s
+Sum[8] <= FullAdder:gen_adders:8:fa_i.s
+CarryOUT <= FullAdder:gen_adders:8:fa_i.Cout
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:0:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:0:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:0:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:1:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:1:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:1:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:2:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:2:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:2:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:3:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:3:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:3:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:4:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:4:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:4:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:5:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:5:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:5:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:6:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:6:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:6:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:7:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:7:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:7:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:8:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:8:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:8:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToThreeEncoder:ENC
+inputs[0] => ~NO_FANOUT~
+inputs[1] => outputs.IN1
+inputs[2] => outputs.IN1
+inputs[3] => outputs.IN1
+inputs[3] => outputs.IN1
+inputs[4] => outputs.IN1
+inputs[5] => outputs.IN1
+inputs[5] => outputs.IN0
+inputs[6] => outputs.IN0
+inputs[7] => outputs.IN1
+inputs[7] => outputs.IN1
+outputs[0] <= outputs.DB_MAX_OUTPUT_PORT_TYPE
+outputs[1] <= outputs.DB_MAX_OUTPUT_PORT_TYPE
+outputs[2] <= outputs.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX0
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF0
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX1
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF1
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX2
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF2
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX3
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF3
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX4
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF4
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX5
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF5
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX6
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF6
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX7
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF7
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|EightToOneMux:MUX8
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaARegister|enARdFF_2:DFF8
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister
+i_resetBar => enARdFF_2:DFF0.i_resetBar
+i_resetBar => enARdFF_2:DFF1.i_resetBar
+i_resetBar => enARdFF_2:DFF2.i_resetBar
+i_resetBar => enARdFF_2:DFF3.i_resetBar
+i_resetBar => enARdFF_2:DFF4.i_resetBar
+i_resetBar => enARdFF_2:DFF5.i_resetBar
+i_resetBar => enARdFF_2:DFF6.i_resetBar
+i_resetBar => enARdFF_2:DFF7.i_resetBar
+i_resetBar => enARdFF_2:DFF8.i_resetBar
+i_load => enable_reg.IN0
+i_load => EightToThreeEncoder:ENC.inputs[1]
+i_shiftLeft => enable_reg.IN1
+i_shiftLeft => EightToThreeEncoder:ENC.inputs[2]
+i_shiftRight => enable_reg.IN1
+i_shiftRight => EightToThreeEncoder:ENC.inputs[3]
+i_decrement => enable_reg.IN1
+i_decrement => EightToThreeEncoder:ENC.inputs[5]
+i_increment => enable_reg.IN1
+i_increment => EightToThreeEncoder:ENC.inputs[4]
+i_serial_in_left => EightToOneMux:MUX8.i_mux[3]
+i_serial_in_right => EightToOneMux:MUX0.i_mux[2]
+i_clock => enARdFF_2:DFF0.i_clock
+i_clock => enARdFF_2:DFF1.i_clock
+i_clock => enARdFF_2:DFF2.i_clock
+i_clock => enARdFF_2:DFF3.i_clock
+i_clock => enARdFF_2:DFF4.i_clock
+i_clock => enARdFF_2:DFF5.i_clock
+i_clock => enARdFF_2:DFF6.i_clock
+i_clock => enARdFF_2:DFF7.i_clock
+i_clock => enARdFF_2:DFF8.i_clock
+i_Value[0] => EightToOneMux:MUX0.i_mux[1]
+i_Value[1] => EightToOneMux:MUX1.i_mux[1]
+i_Value[2] => EightToOneMux:MUX2.i_mux[1]
+i_Value[3] => EightToOneMux:MUX3.i_mux[1]
+i_Value[4] => EightToOneMux:MUX4.i_mux[1]
+i_Value[5] => EightToOneMux:MUX5.i_mux[1]
+i_Value[6] => EightToOneMux:MUX6.i_mux[1]
+i_Value[7] => EightToOneMux:MUX7.i_mux[1]
+i_Value[8] => EightToOneMux:MUX8.i_mux[1]
+o_Value[0] <= enARdFF_2:DFF0.o_q
+o_Value[1] <= enARdFF_2:DFF1.o_q
+o_Value[2] <= enARdFF_2:DFF2.o_q
+o_Value[3] <= enARdFF_2:DFF3.o_q
+o_Value[4] <= enARdFF_2:DFF4.o_q
+o_Value[5] <= enARdFF_2:DFF5.o_q
+o_Value[6] <= enARdFF_2:DFF6.o_q
+o_Value[7] <= enARdFF_2:DFF7.o_q
+o_Value[8] <= enARdFF_2:DFF8.o_q
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC
+InputA[0] => NineBitRippleAdder:RA.InputA[0]
+InputA[1] => NineBitRippleAdder:RA.InputA[1]
+InputA[2] => NineBitRippleAdder:RA.InputA[2]
+InputA[3] => NineBitRippleAdder:RA.InputA[3]
+InputA[4] => NineBitRippleAdder:RA.InputA[4]
+InputA[5] => NineBitRippleAdder:RA.InputA[5]
+InputA[6] => NineBitRippleAdder:RA.InputA[6]
+InputA[7] => NineBitRippleAdder:RA.InputA[7]
+InputA[8] => NineBitRippleAdder:RA.InputA[8]
+InputB[0] => s_b_feed[0].IN0
+InputB[1] => s_b_feed[1].IN0
+InputB[2] => s_b_feed[2].IN0
+InputB[3] => s_b_feed[3].IN0
+InputB[4] => s_b_feed[4].IN0
+InputB[5] => s_b_feed[5].IN0
+InputB[6] => s_b_feed[6].IN0
+InputB[7] => s_b_feed[7].IN0
+InputB[8] => s_b_feed[8].IN0
+Operation => NineBitRippleAdder:RA.CarryIN
+Operation => s_b_feed[8].IN1
+Operation => s_b_feed[7].IN1
+Operation => s_b_feed[6].IN1
+Operation => s_b_feed[5].IN1
+Operation => s_b_feed[4].IN1
+Operation => s_b_feed[3].IN1
+Operation => s_b_feed[2].IN1
+Operation => s_b_feed[1].IN1
+Operation => s_b_feed[0].IN1
+Result[0] <= NineBitRippleAdder:RA.Sum[0]
+Result[1] <= NineBitRippleAdder:RA.Sum[1]
+Result[2] <= NineBitRippleAdder:RA.Sum[2]
+Result[3] <= NineBitRippleAdder:RA.Sum[3]
+Result[4] <= NineBitRippleAdder:RA.Sum[4]
+Result[5] <= NineBitRippleAdder:RA.Sum[5]
+Result[6] <= NineBitRippleAdder:RA.Sum[6]
+Result[7] <= NineBitRippleAdder:RA.Sum[7]
+Result[8] <= NineBitRippleAdder:RA.Sum[8]
+CarryOUT <= NineBitRippleAdder:RA.CarryOUT
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA
+InputA[0] => FullAdder:gen_adders:0:fa_i.A
+InputA[1] => FullAdder:gen_adders:1:fa_i.A
+InputA[2] => FullAdder:gen_adders:2:fa_i.A
+InputA[3] => FullAdder:gen_adders:3:fa_i.A
+InputA[4] => FullAdder:gen_adders:4:fa_i.A
+InputA[5] => FullAdder:gen_adders:5:fa_i.A
+InputA[6] => FullAdder:gen_adders:6:fa_i.A
+InputA[7] => FullAdder:gen_adders:7:fa_i.A
+InputA[8] => FullAdder:gen_adders:8:fa_i.A
+InputB[0] => FullAdder:gen_adders:0:fa_i.B
+InputB[1] => FullAdder:gen_adders:1:fa_i.B
+InputB[2] => FullAdder:gen_adders:2:fa_i.B
+InputB[3] => FullAdder:gen_adders:3:fa_i.B
+InputB[4] => FullAdder:gen_adders:4:fa_i.B
+InputB[5] => FullAdder:gen_adders:5:fa_i.B
+InputB[6] => FullAdder:gen_adders:6:fa_i.B
+InputB[7] => FullAdder:gen_adders:7:fa_i.B
+InputB[8] => FullAdder:gen_adders:8:fa_i.B
+CarryIN => FullAdder:gen_adders:0:fa_i.Cin
+Sum[0] <= FullAdder:gen_adders:0:fa_i.s
+Sum[1] <= FullAdder:gen_adders:1:fa_i.s
+Sum[2] <= FullAdder:gen_adders:2:fa_i.s
+Sum[3] <= FullAdder:gen_adders:3:fa_i.s
+Sum[4] <= FullAdder:gen_adders:4:fa_i.s
+Sum[5] <= FullAdder:gen_adders:5:fa_i.s
+Sum[6] <= FullAdder:gen_adders:6:fa_i.s
+Sum[7] <= FullAdder:gen_adders:7:fa_i.s
+Sum[8] <= FullAdder:gen_adders:8:fa_i.s
+CarryOUT <= FullAdder:gen_adders:8:fa_i.Cout
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:0:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:0:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:0:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:1:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:1:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:1:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:2:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:2:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:2:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:3:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:3:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:3:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:4:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:4:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:4:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:5:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:5:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:5:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:6:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:6:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:6:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:7:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:7:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:7:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:8:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:8:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:INC|NineBitRippleAdder:RA|FullAdder:\gen_adders:8:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC
+InputA[0] => NineBitRippleAdder:RA.InputA[0]
+InputA[1] => NineBitRippleAdder:RA.InputA[1]
+InputA[2] => NineBitRippleAdder:RA.InputA[2]
+InputA[3] => NineBitRippleAdder:RA.InputA[3]
+InputA[4] => NineBitRippleAdder:RA.InputA[4]
+InputA[5] => NineBitRippleAdder:RA.InputA[5]
+InputA[6] => NineBitRippleAdder:RA.InputA[6]
+InputA[7] => NineBitRippleAdder:RA.InputA[7]
+InputA[8] => NineBitRippleAdder:RA.InputA[8]
+InputB[0] => s_b_feed[0].IN0
+InputB[1] => s_b_feed[1].IN0
+InputB[2] => s_b_feed[2].IN0
+InputB[3] => s_b_feed[3].IN0
+InputB[4] => s_b_feed[4].IN0
+InputB[5] => s_b_feed[5].IN0
+InputB[6] => s_b_feed[6].IN0
+InputB[7] => s_b_feed[7].IN0
+InputB[8] => s_b_feed[8].IN0
+Operation => NineBitRippleAdder:RA.CarryIN
+Operation => s_b_feed[8].IN1
+Operation => s_b_feed[7].IN1
+Operation => s_b_feed[6].IN1
+Operation => s_b_feed[5].IN1
+Operation => s_b_feed[4].IN1
+Operation => s_b_feed[3].IN1
+Operation => s_b_feed[2].IN1
+Operation => s_b_feed[1].IN1
+Operation => s_b_feed[0].IN1
+Result[0] <= NineBitRippleAdder:RA.Sum[0]
+Result[1] <= NineBitRippleAdder:RA.Sum[1]
+Result[2] <= NineBitRippleAdder:RA.Sum[2]
+Result[3] <= NineBitRippleAdder:RA.Sum[3]
+Result[4] <= NineBitRippleAdder:RA.Sum[4]
+Result[5] <= NineBitRippleAdder:RA.Sum[5]
+Result[6] <= NineBitRippleAdder:RA.Sum[6]
+Result[7] <= NineBitRippleAdder:RA.Sum[7]
+Result[8] <= NineBitRippleAdder:RA.Sum[8]
+CarryOUT <= NineBitRippleAdder:RA.CarryOUT
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA
+InputA[0] => FullAdder:gen_adders:0:fa_i.A
+InputA[1] => FullAdder:gen_adders:1:fa_i.A
+InputA[2] => FullAdder:gen_adders:2:fa_i.A
+InputA[3] => FullAdder:gen_adders:3:fa_i.A
+InputA[4] => FullAdder:gen_adders:4:fa_i.A
+InputA[5] => FullAdder:gen_adders:5:fa_i.A
+InputA[6] => FullAdder:gen_adders:6:fa_i.A
+InputA[7] => FullAdder:gen_adders:7:fa_i.A
+InputA[8] => FullAdder:gen_adders:8:fa_i.A
+InputB[0] => FullAdder:gen_adders:0:fa_i.B
+InputB[1] => FullAdder:gen_adders:1:fa_i.B
+InputB[2] => FullAdder:gen_adders:2:fa_i.B
+InputB[3] => FullAdder:gen_adders:3:fa_i.B
+InputB[4] => FullAdder:gen_adders:4:fa_i.B
+InputB[5] => FullAdder:gen_adders:5:fa_i.B
+InputB[6] => FullAdder:gen_adders:6:fa_i.B
+InputB[7] => FullAdder:gen_adders:7:fa_i.B
+InputB[8] => FullAdder:gen_adders:8:fa_i.B
+CarryIN => FullAdder:gen_adders:0:fa_i.Cin
+Sum[0] <= FullAdder:gen_adders:0:fa_i.s
+Sum[1] <= FullAdder:gen_adders:1:fa_i.s
+Sum[2] <= FullAdder:gen_adders:2:fa_i.s
+Sum[3] <= FullAdder:gen_adders:3:fa_i.s
+Sum[4] <= FullAdder:gen_adders:4:fa_i.s
+Sum[5] <= FullAdder:gen_adders:5:fa_i.s
+Sum[6] <= FullAdder:gen_adders:6:fa_i.s
+Sum[7] <= FullAdder:gen_adders:7:fa_i.s
+Sum[8] <= FullAdder:gen_adders:8:fa_i.s
+CarryOUT <= FullAdder:gen_adders:8:fa_i.Cout
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:0:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:0:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:0:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:1:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:1:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:1:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:2:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:2:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:2:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:3:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:3:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:3:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:4:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:4:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:4:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:5:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:5:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:5:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:6:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:6:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:6:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:7:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:7:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:7:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:8:fa_i
+a => HalfAdder:ha_low.a
+b => HalfAdder:ha_low.b
+cin => HalfAdder:ha_high.a
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+s <= HalfAdder:ha_high.s
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:8:fa_i|HalfAdder:ha_high
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|NineBitAdderSubtractor:DEC|NineBitRippleAdder:RA|FullAdder:\gen_adders:8:fa_i|HalfAdder:ha_low
+a => c.IN0
+a => s.IN0
+b => c.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|EightToThreeEncoder:ENC
+inputs[0] => ~NO_FANOUT~
+inputs[1] => outputs.IN1
+inputs[2] => outputs.IN1
+inputs[3] => outputs.IN1
+inputs[3] => outputs.IN1
+inputs[4] => outputs.IN1
+inputs[5] => outputs.IN1
+inputs[5] => outputs.IN0
+inputs[6] => outputs.IN0
+inputs[7] => outputs.IN1
+inputs[7] => outputs.IN1
+outputs[0] <= outputs.DB_MAX_OUTPUT_PORT_TYPE
+outputs[1] <= outputs.DB_MAX_OUTPUT_PORT_TYPE
+outputs[2] <= outputs.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|EightToOneMux:MUX0
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|enARdFF_2:DFF0
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|EightToOneMux:MUX1
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|enARdFF_2:DFF1
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|EightToOneMux:MUX2
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|enARdFF_2:DFF2
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|EightToOneMux:MUX3
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|enARdFF_2:DFF3
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|EightToOneMux:MUX4
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|enARdFF_2:DFF4
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|EightToOneMux:MUX5
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|enARdFF_2:DFF5
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|EightToOneMux:MUX6
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|enARdFF_2:DFF6
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|EightToOneMux:MUX7
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|enARdFF_2:DFF7
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|EightToOneMux:MUX8
+i_mux[0] => Mux0.IN7
+i_mux[1] => Mux0.IN6
+i_mux[2] => Mux0.IN5
+i_mux[3] => Mux0.IN4
+i_mux[4] => Mux0.IN3
+i_mux[5] => Mux0.IN2
+i_mux[6] => Mux0.IN1
+i_mux[7] => Mux0.IN0
+o_mux <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+sel0 => Mux0.IN10
+sel1 => Mux0.IN9
+sel2 => Mux0.IN8
+
+
+|FloatingPointMultiplier|MultiplierDataPath:dp|NineBitGPRegister:mantissaBRegister|enARdFF_2:DFF8
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierControlUnit:cp
+i_clock => dflipflop:s0.i_clock
+i_clock => dflipflop:s1.i_clock
+i_clock => dflipflop:s2.i_clock
+i_clock => dflipflop:s3.i_clock
+i_clock => dflipflop:s4.i_clock
+i_reset => dflipflop:s0.i_d
+i_reset => dflipflop:s0.i_async_set
+i_reset => dflipflop:s1.i_async_reset
+i_reset => dflipflop:s2.i_async_reset
+i_reset => dflipflop:s3.i_async_reset
+i_reset => dflipflop:s4.i_async_reset
+i_INCPM => comb.IN1
+i_INCPM => comb.IN1
+i_INCPM => comb.IN1
+i_INCPM => comb.IN1
+i_EXPVLD => comb.IN1
+i_EXPVLD => comb.IN1
+i_EXPVLD => comb.IN1
+o_LDPE <= dflipflop:s0.o_q
+o_LDAM <= dflipflop:s1.o_q
+o_LDBM <= dflipflop:s1.o_q
+o_overflow <= dflipflop:s2.o_q
+o_SHFTPM <= dflipflop:s3.o_q
+o_INCPE <= dflipflop:s3.o_q
+o_LDPM <= dflipflop:s4.o_q
+o_s0 <= dflipflop:s0.o_q
+o_s1 <= dflipflop:s1.o_q
+o_s2 <= dflipflop:s2.o_q
+o_s3 <= dflipflop:s3.o_q
+o_s4 <= dflipflop:s4.o_q
+
+
+|FloatingPointMultiplier|MultiplierControlUnit:cp|dflipflop:s0
+i_d => q_reg.DATAIN
+i_clock => q_reg.CLK
+i_enable => q_reg.ENA
+i_async_reset => q_reg.ACLR
+i_async_reset => q_reg.IN0
+i_async_set => q_reg.IN1
+o_q <= q_reg.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= q_reg.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierControlUnit:cp|dflipflop:s1
+i_d => q_reg.DATAIN
+i_clock => q_reg.CLK
+i_enable => q_reg.ENA
+i_async_reset => q_reg.ACLR
+i_async_reset => q_reg.IN0
+i_async_set => q_reg.IN1
+o_q <= q_reg.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= q_reg.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierControlUnit:cp|dflipflop:s2
+i_d => q_reg.DATAIN
+i_clock => q_reg.CLK
+i_enable => q_reg.ENA
+i_async_reset => q_reg.ACLR
+i_async_reset => q_reg.IN0
+i_async_set => q_reg.IN1
+o_q <= q_reg.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= q_reg.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierControlUnit:cp|dflipflop:s3
+i_d => q_reg.DATAIN
+i_clock => q_reg.CLK
+i_enable => q_reg.ENA
+i_async_reset => q_reg.ACLR
+i_async_reset => q_reg.IN0
+i_async_set => q_reg.IN1
+o_q <= q_reg.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= q_reg.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FloatingPointMultiplier|MultiplierControlUnit:cp|dflipflop:s4
+i_d => q_reg.DATAIN
+i_clock => q_reg.CLK
+i_enable => q_reg.ENA
+i_async_reset => q_reg.ACLR
+i_async_reset => q_reg.IN0
+i_async_set => q_reg.IN1
+o_q <= q_reg.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= q_reg.DB_MAX_OUTPUT_PORT_TYPE
+
+

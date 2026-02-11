@@ -1,0 +1,175 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity FloatingPointAdder is
+    port (
+        i_clock, i_reset : in std_logic;
+        i_signA, i_signB : in std_logic;
+        i_mantissaA, i_mantissaB : in std_logic_vector(7 downto 0);
+        i_exponentA, i_exponentB : in std_logic_vector(6 downto 0);
+
+        o_sign, o_overflow : out std_logic;
+        o_mantissa : out std_logic_vector(7 downto 0);
+        o_exponent : out std_logic_vector(6 downto 0);
+
+        o_s0, o_s1, o_s2, o_s3, o_s4, o_s5, o_s6 : out std_logic
+    );
+end FloatingPointAdder;
+
+architecture rtl of FloatingPointAdder is
+
+    component AdderDataPath is
+        port (
+            signA, signB : in std_logic;
+            mantissaA, mantissaB : in std_logic_vector(7 downto 0);
+            exponentA, exponentB : in std_logic_vector(6 downto 0);
+            gClock, gResetBar : in std_logic;
+
+            signOut : out std_logic;
+            mantissaOut : out std_logic_vector(7 downto 0);
+            exponentOut : out std_logic_vector(6 downto 0);
+            overflow : out std_logic;
+
+            shftM : in std_logic;
+            lddc, decdc : in std_logic;
+            ldam, ldbm : in std_logic;
+            ldsm, lshftm, rshftm : in std_logic;
+            ldse, incse, decse : in std_logic;
+            clrs, ldas : in std_logic;
+
+            dcemt, mantissaCarry, mantissaSumMSB : out std_logic;
+            o_register_Am_result, o_register_Bm_result : out std_logic_vector(8 downto 0)
+        );
+    end component;
+
+    component AdderControlUnit is
+        port (
+            i_clock, i_reset : in std_logic;
+            i_downCounterEmpty, i_mantissaCarry, i_mantissaSumMSB : in std_logic;
+
+            o_loadA, o_loadB : out std_logic;
+            o_loadDownCounter, o_decrementDownCounter : out std_logic;
+            o_smallerMantissaLeftShift : out std_logic;
+
+            o_loadSumE, o_loadSumM, o_loadSumS : out std_logic;
+            o_rightShiftSum, o_incrementSumExponent : out std_logic;
+            o_leftShiftSum, o_decrementSumExponent : out std_logic;
+
+            o_s0, o_s1, o_s2, o_s3, o_s4, o_s5, o_s6 : out std_logic
+        );
+    end component;
+
+    signal resetBar : std_logic;
+
+    -- control signals (from control unit -> datapath)
+    signal ctrl_shiftAlign : std_logic;
+    signal ctrl_loadDc, ctrl_decDc : std_logic;
+    signal ctrl_loadSm, ctrl_shlSm, ctrl_shrSm : std_logic;
+    signal ctrl_loadSe, ctrl_incSe, ctrl_decSe : std_logic;
+    signal ctrl_clrS, ctrl_ldas : std_logic;
+    signal ctrl_loadA_unused, ctrl_loadB_unused : std_logic;
+
+    -- status signals (from datapath -> control unit)
+    signal stat_dcEmpty : std_logic;
+    signal stat_mCarry  : std_logic;
+    signal stat_mMsb    : std_logic;
+
+    -- state taps for debug outputs
+    signal state0, state1, state2, state3, state4, state5, state6 : std_logic;
+
+    -- debug passthroughs kept internal (same behavior as original)
+    signal dbg_am, dbg_bm : std_logic_vector(8 downto 0);
+
+begin
+
+    resetBar <= not i_reset;
+
+    control_fsm : AdderControlUnit
+        port map (
+            i_clock => i_clock,
+            i_reset => i_reset,
+
+            i_downCounterEmpty => stat_dcEmpty,
+            i_mantissaCarry    => stat_mCarry,
+            i_mantissaSumMSB   => stat_mMsb,
+
+            o_loadA => ctrl_loadA_unused,
+            o_loadB => ctrl_loadB_unused,
+
+            o_loadDownCounter => ctrl_loadDc,
+            o_decrementDownCounter => ctrl_decDc,
+
+            o_smallerMantissaLeftShift => ctrl_shiftAlign,
+
+            o_loadSumE => ctrl_loadSe,
+            o_loadSumM => ctrl_loadSm,
+            o_loadSumS => open,
+
+            o_rightShiftSum => ctrl_shrSm,
+            o_incrementSumExponent => ctrl_incSe,
+            o_leftShiftSum => ctrl_shlSm,
+            o_decrementSumExponent => ctrl_decSe,
+
+            o_s0 => state0,
+            o_s1 => state1,
+            o_s2 => state2,
+            o_s3 => state3,
+            o_s4 => state4,
+            o_s5 => state5,
+            o_s6 => state6
+        );
+
+    datapath_core : AdderDataPath
+        port map (
+            signA => i_signA,
+            signB => i_signB,
+
+            mantissaA => i_mantissaA,
+            mantissaB => i_mantissaB,
+
+            exponentA => i_exponentA,
+            exponentB => i_exponentB,
+
+            gClock => i_clock,
+            gResetBar => resetBar,
+
+            signOut => o_sign,
+            mantissaOut => o_mantissa,
+            exponentOut => o_exponent,
+            overflow => o_overflow,
+
+            shftM => ctrl_shiftAlign,
+            lddc  => ctrl_loadDc,
+            decdc => ctrl_decDc,
+
+            ldam => '1',
+            ldbm => '1',
+
+            ldsm   => ctrl_loadSm,
+            lshftm => ctrl_shlSm,
+            rshftm => ctrl_shrSm,
+
+            ldse  => ctrl_loadSe,
+            incse => ctrl_incSe,
+            decse => ctrl_decSe,
+
+            clrs => ctrl_clrS,
+            ldas => ctrl_ldas,
+
+            dcemt => stat_dcEmpty,
+            mantissaCarry => stat_mCarry,
+            mantissaSumMSB => stat_mMsb,
+
+            o_register_Am_result => dbg_am,
+            o_register_Bm_result => dbg_bm
+        );
+
+    o_s0 <= state0;
+    o_s1 <= state1;
+    o_s2 <= state2;
+    o_s3 <= state3;
+    o_s4 <= state4;
+    o_s5 <= state5;
+    o_s6 <= state6;
+
+end architecture;
