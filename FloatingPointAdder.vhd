@@ -38,7 +38,7 @@ architecture rtl of FloatingPointAdder is
             LDSE, INCSE, DECSE   : in  std_logic;
             CLRS, LDAS           : in  std_logic;
             DCEMT, MantissaCarry, MantissaSumMSB : out std_logic;
-
+            -- FIXED: Matching these port names to the dp entity
             o_reg_Am, o_reg_Bm : out std_logic_vector(8 downto 0)
         );
     end component;
@@ -98,7 +98,7 @@ begin
             DCEMT           => int_DCEMT,
             MantissaCarry   => int_MantissaCarry,
             MantissaSumMSB  => int_MantissaSumMSB,
-
+            -- FIXED: Mapping to the corrected port names
             o_reg_Am        => int_regAm,
             o_reg_Bm        => int_regBm
         );

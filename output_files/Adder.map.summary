@@ -1,14 +1,14 @@
-Analysis & Synthesis Status : Successful - Wed Feb 11 03:15:37 2026
+Analysis & Synthesis Status : Successful - Wed Feb 11 13:53:53 2026
 Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
 Revision Name : Adder
-Top-level Entity Name : FloatingPointMultiplier
+Top-level Entity Name : TopLevel
 Family : Cyclone IV E
-Total logic elements : 73
-    Total combinational functions : 55
-    Dedicated logic registers : 30
-Total registers : 30
-Total pins : 51
+Total logic elements : 85
+    Total combinational functions : 83
+    Dedicated logic registers : 59
+Total registers : 59
+Total pins : 19
 Total virtual pins : 0
 Total memory bits : 0
-Embedded Multiplier 9-bit elements : 1
+Embedded Multiplier 9-bit elements : 0
 Total PLLs : 0

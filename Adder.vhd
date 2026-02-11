@@ -1,0 +1,101 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+
+ENTITY fpDemo IS
+    PORT (
+        GClock      : IN  STD_LOGIC;
+        GReset      : IN  STD_LOGIC;
+        SignOut     : OUT STD_LOGIC;
+        ExponentOut : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+        MantissaOut : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+        Overflow    : OUT STD_LOGIC
+    );
+END ENTITY;
+
+ARCHITECTURE s_fpDemo OF fpDemo IS
+    -- Signals for the inputs
+    SIGNAL int_SignA    : STD_LOGIC;
+    SIGNAL int_ExpA     : STD_LOGIC_VECTOR(6 DOWNTO 0);
+    SIGNAL int_ManA     : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL int_SignB    : STD_LOGIC;
+    SIGNAL int_ExpB     : STD_LOGIC_VECTOR(6 DOWNTO 0);
+    SIGNAL int_ManB     : STD_LOGIC_VECTOR(7 DOWNTO 0);
+
+    -- NOTE: Ensure this component name matches your top level entity name
+    -- Change name for declaration and instantiation
+    COMPONENT FloatingPointAdder
+        PORT (
+            i_signA, i_signB         : in  std_logic;
+            i_mantissaA, i_mantissaB : in  std_logic_vector(7 downto 0);
+            i_exponentA, i_exponentB : in  std_logic_vector(6 downto 0);
+            i_clock					: in  std_logic;
+				i_reset   			: in  std_logic;
+            o_sign              : out std_logic;
+            o_mantissa          : out std_logic_vector(7 downto 0);
+            o_exponent          : out std_logic_vector(6 downto 0);
+            o_overflow             : out std_logic
+        );
+    END COMPONENT;
+BEGIN
+
+    -- INSTRUCTIONS:
+    -- Uncomment ONE of the test cases below to simulate. 
+    -- Ensure all other test cases are commented out.
+
+    ------------------------------------------------------------------
+    -- TEST CASE 1: A + B = 3.75
+    -- A   =  +1.25 = 0 0111111 01000000
+    -- B   =  +2.5  = 0 1000000 01000000
+    -- Out =  +3.75 = 0 1000000 11100000
+    ------------------------------------------------------------------
+    int_SignA <= '0'; int_ExpA <= "0111111"; int_ManA <= "01000000";
+    int_SignB <= '0'; int_ExpB <= "1000000"; int_ManB <= "01000000";
+
+    ------------------------------------------------------------------
+    -- TEST CASE 2: A - B = -1.25
+    -- A   =  +1.25 = 0 0111111 01000000
+    -- B   =  -2.5  = 1 1000000 01000000
+    -- Out =  -1.25 = 1 0111111 01000000
+    -- (Requires Left Normalization)
+
+    -- (If Left Normalization is skipped):
+    -- Out =  -3.25 = 1 1000000 10100000
+    ------------------------------------------------------------------
+    -- int_SignA <= '0'; int_ExpA <= "0111111"; int_ManA <= "01000000";
+    -- int_SignB <= '1'; int_ExpB <= "1000000"; int_ManB <= "01000000";
+
+    ------------------------------------------------------------------
+    -- TEST CASE 3: A * B = 3.125
+    -- A   =  +1.25  = 0 0111111 01000000
+    -- B   =  +2.5   = 0 1000000 01000000
+    -- Out =  +3.125 = 0 1000000 10010000
+    ------------------------------------------------------------------
+    -- int_SignA <= '0'; int_ExpA <= "0111111"; int_ManA <= "01000000";
+    -- int_SignB <= '0'; int_ExpB <= "1000000"; int_ManB <= "01000000";
+
+    ------------------------------------------------------------------
+    -- TEST CASE 4: A * (-B) = -3.125
+    -- A   =  +1.25  = 0 0111111 01000000
+    -- B   =  -2.5   = 1 1000000 01000000
+    -- Out =  -3.125 = 1 1000000 10010000
+    ------------------------------------------------------------------
+    -- int_SignA <= '0'; int_ExpA <= "0111111"; int_ManA <= "01000000";
+    -- int_SignB <= '1'; int_ExpB <= "1000000"; int_ManB <= "01000000";
+
+    FP : FloatingPointAdder
+    PORT MAP(
+        i_clock     => GClock,
+        i_reset    => GReset,
+        i_signA      => int_SignA,
+        i_exponentA  => int_ExpA,
+        i_mantissaA   => int_ManA,
+        i_signB       => int_SignB,
+        i_exponentB   => int_ExpB,
+        i_mantissaB   => int_ManB,
+        o_sign     => SignOut,
+        o_exponent => ExponentOut,
+        o_mantissa => MantissaOut,
+        o_overflow   => Overflow
+    );
+
+END s_fpDemo;
